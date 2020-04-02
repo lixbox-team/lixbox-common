@@ -6,8 +6,8 @@ desc_project{
     withQuarkus=false
     version{
         majorVersion=8
-        mediumVersion=0
-        minorVersion=1
+        mediumVersion=1
+        minorVersion=0
     }
     artefact{
         group="fr.lixbox.lixbox-common"
