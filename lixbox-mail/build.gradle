@@ -1,17 +1,17 @@
 project(':lixbox-mail'){    
 	dependencies {	     
-		compile project(':lixbox-core')        
+		implementation project(':lixbox-core')        
 
 		//jee
         compileOnly (group: 'javax', name: 'javaee-api', version: '8.0')
         compileOnly (group: 'javax.xml.bind', name: 'jaxb-api', version: '2.4.0-b180830.0359')
        
 
-        compile (group: 'com.sun.mail', name: 'javax.mail', version: '1.6.2')
+        implementation (group: 'com.sun.mail', name: 'javax.mail', version: '1.6.2')
         
         
         // ================================ Test ================================
-		testCompile 'junit:junit:4.12'
+		testImplementation 'junit:junit:4.12'
         testCompileOnly (group: 'javax', name: 'javaee-api', version: '8.0')
         testCompileOnly (group: 'javax.xml.bind', name: 'jaxb-api', version: '2.4.0-b180830.0359')
 	}

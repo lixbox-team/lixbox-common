@@ -430,6 +430,7 @@ subprojects {
         }
         analyzers{
             centralEnabled=false
+            retirejs{enabled=false}
         }
         failBuildOnCVSS=0
         suppressionFile = "$rootDir/gradle/config/owasp-suppressions.xml"        
