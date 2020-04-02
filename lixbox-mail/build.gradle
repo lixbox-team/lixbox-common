@@ -1,13 +1,13 @@
 project(':lixbox-mail'){    
 	dependencies {	     
-		implementation project(':lixbox-core')        
+		compile project(':lixbox-core')        
 
 		//jee
         compileOnly (group: 'jakarta.platform', name: 'jakarta.jakartaee-api', version: '8.0.0')
         compileOnly (group: 'jakarta.xml.bind', name: 'jakarta.xml.bind-api', version: '2.3.3')
        
 
-        implementation (group: 'jakarta.mail', name: 'jakarta.mail-api', version: '1.6.5')
+        compile (group: 'jakarta.mail', name: 'jakarta.mail-api', version: '1.6.5')
         
         
         // ================================ Test ================================
