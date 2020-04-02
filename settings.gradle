@@ -1,0 +1,6 @@
+rootProject.name = 'lixbox-common'
+
+/** Projet importé */
+include 'lixbox-core'
+include 'lixbox-mail'
+include 'lixbox-stream'

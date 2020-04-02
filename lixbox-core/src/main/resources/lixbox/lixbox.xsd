@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="www.lixtec.fr/lixbox"
+    targetNamespace="www.lixtec.fr/lixbox" elementFormDefault="qualified"
+    attributeFormDefault="unqualified">
+    
+    <xs:complexType name="EmailAdresse">
+        <xs:sequence>
+            <xs:element name="nom" type="xs:string" minOccurs="0" />
+            <xs:element name="adresseMail" type="xs:string" />
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

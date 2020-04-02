@@ -1,0 +1,49 @@
+project(':lixbox-core'){    
+	dependencies {     
+        //jee
+        compileOnly (group: 'javax', name: 'javaee-api', version: '8.0')
+        compileOnly (group: 'javax.xml.bind', name: 'jaxb-api', version: '2.4.0-b180830.0359')
+       
+       
+        compileOnly (group: 'org.hibernate', name: 'hibernate-core', version: '5.3.8.Final'){
+            exclude group: 'dom4j', module: 'dom4j'
+        }
+	   
+        
+        compile 'com.fasterxml.jackson.core:jackson-core:2.10.2'
+        compile 'com.fasterxml.jackson.core:jackson-databind:2.10.2'
+      
+        compile 'commons-beanutils:commons-beanutils:1.9.4'
+        compile 'commons-codec:commons-codec:1.11'
+        compile 'org.apache.commons:commons-collections4:4.2'
+        compile 'commons-io:commons-io:2.6'
+        
+        compile 'org.apache.commons:commons-lang3:3.8.1'
+        
+        compile 'org.jdom:jdom:2.0.2'
+        
+        
+        // ================================ Test ================================
+		testCompile 'junit:junit:4.12'
+        testCompileOnly (group: 'javax', name: 'javaee-api', version: '8.0')
+        testCompileOnly (group: 'javax.xml.bind', name: 'jaxb-api', version: '2.4.0-b180830.0359')
+	}
+    
+    eclipse{
+        wtp{
+            facet {
+                facet name: 'jst.cdi', version: '2.0'
+                facet name: 'jst.utility', version: '1.0'
+            }
+        }
+    }
+	
+	sonarqube {
+		properties {
+           property "sonar.projectKey", "${config.desc_project.artefact.group}.${rootProject.name}:${project.name}"
+           property "sonar.projectName", "${project.name}"
+		   property "sonar.sources","src/main"
+		   property "sonar.tests","src/test"
+        }
+	}
+}

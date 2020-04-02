@@ -1,0 +1,40 @@
+project(':lixbox-stream'){    
+	dependencies {	     
+		compile project(':lixbox-core')        
+
+		//jee
+        compileOnly (group: 'javax', name: 'javaee-api', version: '8.0')
+        compileOnly (group: 'javax.xml.bind', name: 'jaxb-api', version: '2.4.0-b180830.0359')
+       
+
+        compile (group: 'com.sun.mail', name: 'javax.mail', version: '1.6.2')
+        
+        compile 'org.apache.tika:tika-core:1.23'
+		
+        compile (group: 'org.apache.commons', name: 'commons-jexl3', version: '3.1') 
+        
+        // ================================ Test ================================
+		testCompile 'junit:junit:4.12'
+        testCompileOnly (group: 'javax', name: 'javaee-api', version: '8.0')
+        testCompileOnly (group: 'javax.xml.bind', name: 'jaxb-api', version: '2.4.0-b180830.0359')
+	}
+    
+    eclipse{
+        wtp{
+            facet {
+                facet name: 'jst.cdi', version: '2.0'
+                facet name: 'jst.utility', version: '1.0'
+            }
+        }
+    }
+	
+	sonarqube {
+		properties {
+           property "sonar.projectKey", "${config.desc_project.artefact.group}.${rootProject.name}:${project.name}"
+           property "sonar.projectName", "${project.name}"
+		   property "sonar.sources","src/main"
+		   property "sonar.tests","src/test"
+        }
+	}
+	
+}
