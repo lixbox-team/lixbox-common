@@ -1,8 +1,8 @@
 project(':lixbox-core'){    
 	dependencies {     
         //jee
-        compileOnly (group: 'javax', name: 'javaee-api', version: '8.0')
-        compileOnly (group: 'javax.xml.bind', name: 'jaxb-api', version: '2.4.0-b180830.0359')
+        compileOnly (group: 'jakarta.platform', name: 'jakarta.jakartaee-api', version: '8.0.0')
+        compileOnly (group: 'jakarta.xml.bind', name: 'jakarta.xml.bind-api', version: '2.3.3')
        
        
         compileOnly (group: 'org.hibernate', name: 'hibernate-core', version: '5.3.8.Final'){
@@ -25,8 +25,8 @@ project(':lixbox-core'){
         
         // ================================ Test ================================
 		testImplementation 'junit:junit:4.12'
-        testCompileOnly (group: 'javax', name: 'javaee-api', version: '8.0')
-        testCompileOnly (group: 'javax.xml.bind', name: 'jaxb-api', version: '2.4.0-b180830.0359')
+        testCompileOnly (group: 'jakarta.platform', name: 'jakarta.jakartaee-api', version: '8.0.0')
+        testCompileOnly (group: 'jakarta.xml.bind', name: 'jakarta.xml.bind-api', version: '2.3.3')
 	}
     
     eclipse{
