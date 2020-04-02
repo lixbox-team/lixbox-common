@@ -25,7 +25,7 @@ node('slave-gradle-jdk8') {
         try
         {
             deleteDir()
-            git credentialsId: 'e1529c62-f3ec-4b12-bbad-2a352fda9af2', url: gitUri, branch: branchName
+            git credentialsId: '2a48fbab-f642-4bc5-98f1-0c7166aacd1b', url: gitUri, branch: branchName
             sh 'chmod -R 755 ${WORKSPACE}'
             sh 'export SOURCE_BUILD_NUMBER=${BUILD_NUMBER} && ${WORKSPACE}/gradlew clean --stacktrace'            
         }
@@ -54,7 +54,7 @@ node('slave-gradle-jdk8') {
         echo 'Distribution for test started'
         retry(2){ 
             try{
-                withCredentials([usernamePassword(credentialsId: 'e1529c62-f3ec-4b12-bbad-2a352fda9af2', usernameVariable: 'JENKINS_USR', passwordVariable: 'JENKINS_PWD')]) {
+                withCredentials([usernamePassword(credentialsId: '2a48fbab-f642-4bc5-98f1-0c7166aacd1b', usernameVariable: 'JENKINS_USR', passwordVariable: 'JENKINS_PWD')]) {
                     sh 'export SOURCE_BUILD_NUMBER=${BUILD_NUMBER} && ${WORKSPACE}/gradlew -Dorg.ajoberstar.grgit.auth.username=${JENKINS_USR} -Dorg.ajoberstar.grgit.auth.password=${JENKINS_PWD} --stacktrace publish'
                 }            
             }
@@ -97,7 +97,7 @@ node('slave-gradle-jdk8') {
         echo 'Distribution for production started'
         retry(2){ 
             try{
-                withCredentials([usernamePassword(credentialsId: 'e1529c62-f3ec-4b12-bbad-2a352fda9af2', usernameVariable: 'JENKINS_USR', passwordVariable: 'JENKINS_PWD')]) {
+                withCredentials([usernamePassword(credentialsId: '2a48fbab-f642-4bc5-98f1-0c7166aacd1b', usernameVariable: 'JENKINS_USR', passwordVariable: 'JENKINS_PWD')]) {
                     sh 'export SOURCE_BUILD_NUMBER=${BUILD_NUMBER} && ${WORKSPACE}/gradlew -Dorg.ajoberstar.grgit.auth.username=${JENKINS_USR} -Dorg.ajoberstar.grgit.auth.password=${JENKINS_PWD} -Penv=prod --stacktrace publish'
                 }
                 if(!currentBuild.result)
