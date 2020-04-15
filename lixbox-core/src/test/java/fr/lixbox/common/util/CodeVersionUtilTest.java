@@ -15,10 +15,6 @@
  ******************************************************************************/
 package fr.lixbox.common.util;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
-
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -33,26 +29,6 @@ public class CodeVersionUtilTest
     @Test
     public final void testGetVersion()
     {
-        Assert.assertTrue("Bad version read waited "+getVersion()+" received "+CodeVersionUtil.getVersion(this.getClass()), getVersion().equals(CodeVersionUtil.getVersion(this.getClass())));
-    }
-    
-    
-    
-    private String getVersion()
-    {
-        String result = "";
-        try
-        {
-            Properties prop = new Properties();
-            InputStream is = this.getClass().getResourceAsStream("/build-info.properties");
-            prop.load(is);
-            is.close();
-            result = prop.getProperty("version");
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-        return result;
+        Assert.assertTrue("Bad version read waited version_test received "+CodeVersionUtil.getVersion(this.getClass()), "0.8.2".equals(CodeVersionUtil.getVersion(this.getClass())));
     }
 }

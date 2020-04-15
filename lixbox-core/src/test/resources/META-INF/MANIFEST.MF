@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Implementation-Title: lixbox-core
+Implementation-Version: version_test
+Implementation-Timestamp: Wed Apr 15 12:35:43 CEST 2020
+
