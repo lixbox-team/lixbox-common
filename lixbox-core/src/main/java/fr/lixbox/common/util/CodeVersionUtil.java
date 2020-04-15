@@ -43,14 +43,14 @@ public class CodeVersionUtil
     
     public static String getVersion(Class<?> clasz)
     {
-        String result = "";
-        try
+        String result = "unknow";
+        try(
+            InputStream is = clasz.getResourceAsStream("/META-INF/MANIFEST.MF");
+        )
         {
             Properties prop = new Properties();
-            InputStream is = clasz.getResourceAsStream("/build-info.properties");
             prop.load(is);
-            is.close();
-            result = prop.getProperty("version");
+            result = prop.getProperty("Implementation-Version");
         }
         catch (IOException e)
         {
