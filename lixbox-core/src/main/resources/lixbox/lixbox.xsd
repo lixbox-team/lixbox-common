@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns="www.lixtec.fr/lixbox"
-    targetNamespace="www.lixtec.fr/lixbox" elementFormDefault="qualified"
+    xmlns="www.lixbox.fr/common"
+    targetNamespace="www.lixbox.fr/common" elementFormDefault="qualified"
     attributeFormDefault="unqualified">
     
     <xs:complexType name="EmailAdresse">

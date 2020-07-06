@@ -73,7 +73,7 @@ public class MailUtil implements Serializable
     
     private static final String PATH_SEPARATOR = "/";    
     private static final String PORT_SEPARATOR = ":";
-    private static final EmailAdresse MAIL_FROM = new EmailAdresse("Application <noreply@lixtec.fr>");    
+    private static final EmailAdresse MAIL_FROM = new EmailAdresse("Application <noreply@dev.lan>");    
     private static final String MAIL_TMP_PATH = System.getProperty("java.io.tmpdir");
     
     private final ConteneurEvenement conteneurEvent = new ConteneurEvenement();
