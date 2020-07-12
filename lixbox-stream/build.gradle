@@ -3,7 +3,7 @@ project(':lixbox-stream'){
 		implementation project(':lixbox-core')        
 
         
-        implementation 'org.apache.tika:tika-core:1.24'
+        implementation 'org.apache.tika:tika-core:1.24.1'
         implementation (group: 'org.apache.commons', name: 'commons-jexl3', version: '3.1') 
         
         

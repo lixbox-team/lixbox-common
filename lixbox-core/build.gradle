@@ -3,21 +3,16 @@ project(':lixbox-core'){
         //jee
         compileOnly (group: 'jakarta.platform', name: 'jakarta.jakartaee-api', version: '8.0.0')
         compileOnly (group: 'jakarta.xml.bind', name: 'jakarta.xml.bind-api', version: '2.3.3')
-       
-       
-        compileOnly (group: 'org.hibernate', name: 'hibernate-core', version: '5.3.8.Final'){
-            exclude group: 'dom4j', module: 'dom4j'
-        }
         
-        compile 'com.fasterxml.jackson.core:jackson-core:2.10.2'
-        compile 'com.fasterxml.jackson.core:jackson-databind:2.10.2'
+        compile 'com.fasterxml.jackson.core:jackson-core:2.11.1'
+        compile 'com.fasterxml.jackson.core:jackson-databind:2.11.1'
       
         compile 'commons-beanutils:commons-beanutils:1.9.4'
-        compile 'commons-codec:commons-codec:1.11'
-        compile 'org.apache.commons:commons-collections4:4.2'
-        compile 'commons-io:commons-io:2.6'
+        compile 'commons-codec:commons-codec:1.14'
+        compile 'org.apache.commons:commons-collections4:4.4'
+        compile 'commons-io:commons-io:2.7'
         
-        compile 'org.apache.commons:commons-lang3:3.8.1'
+        compile 'org.apache.commons:commons-lang3:3.10'
         
         compile 'org.jdom:jdom:2.0.2'
         

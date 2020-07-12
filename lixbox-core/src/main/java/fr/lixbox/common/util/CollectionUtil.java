@@ -493,21 +493,12 @@ public class CollectionUtil
      * 
      * return une collection epuree
      */
-    @SuppressWarnings("unchecked")
     public static List<?> removeByProperty(List<?> liste, 
             String propertyName, Object value)
     {
         try
         {
-            final List<Object> listeCleaned; 
-            if (org.hibernate.collection.internal.PersistentBag.class.equals(liste.getClass()))
-            {
-                listeCleaned = new ArrayList<>();    
-            }
-            else
-            {
-                listeCleaned = liste.getClass().getConstructor().newInstance();
-            }
+            final List<Object> listeCleaned = new ArrayList<>();
             if (!isEmpty(liste))
             {
                 for (Object item : liste)
