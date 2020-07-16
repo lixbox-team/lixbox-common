@@ -23,8 +23,6 @@
  ******************************************************************************/
 package fr.lixbox.common.util;
 
-import java.util.Calendar;
-
 import javax.ejb.EJBTransactionRolledbackException;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.NoResultException;
@@ -38,8 +36,6 @@ import fr.lixbox.common.exceptions.BusinessException;
 import fr.lixbox.common.exceptions.CriticalBusinessException;
 import fr.lixbox.common.exceptions.ProcessusException;
 import fr.lixbox.common.model.ConteneurEvenement;
-import fr.lixbox.common.model.Contexte;
-import fr.lixbox.common.model.enumeration.NiveauEvenement;
 import fr.lixbox.common.resource.LixboxResources;
 
 /**
@@ -78,16 +74,6 @@ public class ExceptionUtil extends ExceptionUtils
             LOG.error(getRootCauseMessage(e));
             ConteneurEvenement conteneurEvenement = new ConteneurEvenement();
             conteneurEvenement.addAll(((javax.validation.ConstraintViolationException)e).getConstraintViolations());
-            result = new BusinessException(LixboxResources.getString("MSG.ERROR.EXCEPUTI_03", racineClasse),conteneurEvenement);
-        }
-        if (e instanceof org.hibernate.exception.ConstraintViolationException)
-        {
-            LOG.error(getRootCauseMessage(e));
-            Contexte contexte = new Contexte();
-            contexte.put("constraintViolationExceptionName", ((org.hibernate.exception.ConstraintViolationException)e).getConstraintName());
-            ConteneurEvenement conteneurEvenement = new ConteneurEvenement();
-            conteneurEvenement.add(NiveauEvenement.ERROR, ((org.hibernate.exception.ConstraintViolationException)e).getConstraintName(), 
-            		Calendar.getInstance(), contexte);
             result = new BusinessException(LixboxResources.getString("MSG.ERROR.EXCEPUTI_03", racineClasse),conteneurEvenement);
         }
         if (e instanceof BusinessException)

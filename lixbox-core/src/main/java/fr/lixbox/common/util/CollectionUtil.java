@@ -499,15 +499,7 @@ public class CollectionUtil
     {
         try
         {
-            final List<Object> listeCleaned; 
-            if (org.hibernate.collection.internal.PersistentBag.class.equals(liste.getClass()))
-            {
-                listeCleaned = new ArrayList<>();    
-            }
-            else
-            {
-                listeCleaned = liste.getClass().getConstructor().newInstance();
-            }
+            final List<Object> listeCleaned= liste.getClass().getConstructor().newInstance();
             if (!isEmpty(liste))
             {
                 for (Object item : liste)
