@@ -37,7 +37,10 @@ import javax.validation.ConstraintViolation;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import fr.lixbox.common.model.enumeration.NiveauEvenement;
@@ -50,6 +53,7 @@ import fr.lixbox.common.util.StringUtil;
  * 
  * @author ludovic.terral
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ConteneurEvenement implements Serializable
 {
     // ----------- Attribut -----------
@@ -63,6 +67,26 @@ public class ConteneurEvenement implements Serializable
     
 
     // ----------- Methode -----------
+    public static ConteneurEvenement valueOf(String json)
+    {
+        ConteneurEvenement result = null;
+        TypeReference<ConteneurEvenement> typeRef = new TypeReference<ConteneurEvenement>() {};
+        if (StringUtil.isNotEmpty(json)) {
+            ObjectMapper mapper = new ObjectMapper();
+
+            try {
+                result = mapper.readValue(json, typeRef);
+            } catch (Exception var5) {
+                LOG.error(var5, var5);
+            }
+        }
+
+        return result;
+    }
+    
+    
+    
+    @JsonIgnore
     public long getSize()
     {
         long size = 0;
@@ -141,6 +165,7 @@ public class ConteneurEvenement implements Serializable
      * 
      * @return une sous-liste contenant les evenements correspondant au niveau
      */
+    @JsonIgnore
     public List<Evenement> getEvenementTypeErreur()
     {
         return this.getEvenementByNiveauEvenement(NiveauEvenement.ERROR);
@@ -154,6 +179,7 @@ public class ConteneurEvenement implements Serializable
      * 
      * @return une sous-liste contenant les evenements correspondant au niveau
      */
+    @JsonIgnore
     public List<Evenement> getEvenementTypeWarning()
     {
         return this.getEvenementByNiveauEvenement(NiveauEvenement.WARN);
@@ -167,6 +193,7 @@ public class ConteneurEvenement implements Serializable
      * 
      * @return une sous-liste contenant les evenments correspondant au niveau
      */
+    @JsonIgnore
     public List<Evenement> getEvenementTypeInfo()
     {
         return this.getEvenementByNiveauEvenement(NiveauEvenement.INFO);
@@ -179,6 +206,7 @@ public class ConteneurEvenement implements Serializable
      * 
      * @return une liste contenant les evenements
      */
+    @JsonIgnore
     public List<Evenement> getEvenements()
     {
         return CollectionUtil.convertAnyListToArrayList(evenements.values());
@@ -210,6 +238,7 @@ public class ConteneurEvenement implements Serializable
      * 
      * @return le niveau le plus eleves
      */
+    @JsonIgnore
     public NiveauEvenement getNiveauMax()
     {
         NiveauEvenement result = NiveauEvenement.INFO;
@@ -227,6 +256,7 @@ public class ConteneurEvenement implements Serializable
      * 
      * @return une liste contenant les evenements
      */
+    @JsonIgnore
     public List<String> getStringEvenements()
     {
         final List<String> liste = new ArrayList<>();
@@ -390,6 +420,7 @@ public class ConteneurEvenement implements Serializable
      * 
      * @return un evenement dont le contexte contient l'element recherche
      */
+    @JsonIgnore
     public Evenement getEvenementByContextElement(final String contextElmtValue)
     {
         Evenement result = null;
@@ -413,6 +444,7 @@ public class ConteneurEvenement implements Serializable
      * 
      * @return une liste d'evenements
      */
+    @JsonIgnore
     public List<Evenement> getEvenementsByContextElement(final String contextElmtName,
             final String contextElmtValue)
     {
@@ -439,6 +471,7 @@ public class ConteneurEvenement implements Serializable
      * 
      * @return une liste d'evenements
      */
+    @JsonIgnore
     public List<Evenement> getEvenementsByContextElement(final String contextElmtName,
             final String contextElmtValue, final NiveauEvenement criticite)
     {

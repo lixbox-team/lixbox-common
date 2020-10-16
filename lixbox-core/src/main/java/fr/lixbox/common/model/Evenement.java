@@ -37,9 +37,11 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import fr.lixbox.common.model.enumeration.NiveauEvenement;
+import fr.lixbox.common.util.StringUtil;
 
 
 /**
@@ -63,6 +65,25 @@ public class Evenement implements Serializable
 
 
     // ----------- Methode -----------
+    public static Evenement valueOf(String json)
+    {
+        Evenement result = null;
+        TypeReference<Evenement> typeRef = new TypeReference<Evenement>() {};
+        if (StringUtil.isNotEmpty(json)) {
+            ObjectMapper mapper = new ObjectMapper();
+
+            try {
+                result = mapper.readValue(json, typeRef);
+            } catch (Exception var5) {
+                LOG.error(var5, var5);
+            }
+        }
+
+        return result;
+    }
+    
+    
+    
     public Evenement(final NiveauEvenement niveau,
             final String libelle, final Contexte contexte)
     {

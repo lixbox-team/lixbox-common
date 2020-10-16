@@ -34,9 +34,11 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import fr.lixbox.common.exceptions.ProcessusException;
+import fr.lixbox.common.util.StringUtil;
 
 
 /**
@@ -56,6 +58,25 @@ public class Contexte implements Serializable
     
     
     // ----------- Methode -----------
+    public static Contexte valueOf(String json)
+    {
+        Contexte result = null;
+        TypeReference<Contexte> typeRef = new TypeReference<Contexte>() {};
+        if (StringUtil.isNotEmpty(json)) {
+            ObjectMapper mapper = new ObjectMapper();
+
+            try {
+                result = mapper.readValue(json, typeRef);
+            } catch (Exception var5) {
+                LOG.error(var5, var5);
+            }
+        }
+
+        return result;
+    }
+    
+    
+    
     public Contexte()
     {
         contenu = new HashMap<>();
@@ -85,6 +106,10 @@ public class Contexte implements Serializable
     public Map<String, String> getContenu()
     {
         return contenu;
+    }
+    public void setContenu(Map<String, String> contenu)
+    {
+        this.contenu = contenu;
     }
 
 
