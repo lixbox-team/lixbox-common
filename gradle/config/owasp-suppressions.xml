@@ -6,8 +6,7 @@
       ]]></notes>
       <packageUrl regex="true">^pkg:maven/org\.dom4j/dom4j@.*$</packageUrl>
       <cpe>cpe:/a:dom4j_project:dom4j</cpe>
-   </suppress>
-   <suppress>
+   </suppress><suppress>
    <notes><![CDATA[
    file name: dom4j-2.1.1.jar
    ]]></notes>

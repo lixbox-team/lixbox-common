@@ -493,12 +493,13 @@ public class CollectionUtil
      * 
      * return une collection epuree
      */
+    @SuppressWarnings("unchecked")
     public static List<?> removeByProperty(List<?> liste, 
             String propertyName, Object value)
     {
         try
         {
-            final List<Object> listeCleaned = new ArrayList<>();
+            final List<Object> listeCleaned= liste.getClass().getConstructor().newInstance();
             if (!isEmpty(liste))
             {
                 for (Object item : liste)

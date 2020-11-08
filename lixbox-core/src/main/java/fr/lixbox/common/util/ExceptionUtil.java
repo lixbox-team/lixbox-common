@@ -23,7 +23,6 @@
  ******************************************************************************/
 package fr.lixbox.common.util;
 
-import javax.ejb.EJBTransactionRolledbackException;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.NoResultException;
 
@@ -100,11 +99,6 @@ public class ExceptionUtil extends ExceptionUtils
         //Traitement des exceptions aleatoires
         if (e instanceof EntityNotFoundException ||
             e instanceof NoResultException)            
-        {
-            result = new BusinessException(LixboxResources.getString("MSG.ERROR.EXCEPUTI_01", racineClasse));
-        }
-        
-        if (e instanceof EJBTransactionRolledbackException && ((EJBTransactionRolledbackException) e).getCausedByException() instanceof EntityNotFoundException)            
         {
             result = new BusinessException(LixboxResources.getString("MSG.ERROR.EXCEPUTI_01", racineClasse));
         }

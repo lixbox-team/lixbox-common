@@ -23,14 +23,11 @@
  ******************************************************************************/
 package fr.lixbox.common.exceptions;
 
-import javax.ejb.ApplicationException;
-
 import fr.lixbox.common.model.ConteneurEvenement;
 import fr.lixbox.common.model.Contexte;
 import fr.lixbox.common.model.enumeration.NiveauEvenement;
 
 
-@ApplicationException(rollback=false)
 public class BusinessException extends Exception
 {
     // ----------- Attribut -----------      

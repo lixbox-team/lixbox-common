@@ -23,12 +23,9 @@
  ******************************************************************************/
 package fr.lixbox.common.exceptions;
 
-import javax.ejb.ApplicationException;
-
 import fr.lixbox.common.model.ConteneurEvenement;
 
 
-@ApplicationException(rollback=true)
 public class CriticalBusinessException extends BusinessException
 {
     // ----------- Attribut -----------      
