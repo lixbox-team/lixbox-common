@@ -27,13 +27,11 @@ import java.beans.Transient;
 import java.io.Serializable;
 import java.text.MessageFormat;
 
-import javax.mail.internet.InternetAddress;
-import javax.persistence.Embeddable;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlTransient;
-import javax.xml.bind.annotation.XmlType;
-
 import fr.lixbox.common.util.StringUtil;
+import jakarta.mail.internet.InternetAddress;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlTransient;
+import jakarta.xml.bind.annotation.XmlType;
 
 /**
  * Cette classe est une combinaison entre un parser et un pojo compatible avec
@@ -41,7 +39,6 @@ import fr.lixbox.common.util.StringUtil;
  * 
  * @author ludovic.terral
  */
-@Embeddable
 @XmlType(propOrder={"nom", "adresseMail"}, namespace="lixbox")
 public class EmailAdresse implements Serializable
 {

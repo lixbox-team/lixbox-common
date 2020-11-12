@@ -31,18 +31,17 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.activation.DataHandler;
-import javax.activation.DataSource;
-import javax.activation.FileDataSource;
-import javax.activation.URLDataSource;
-import javax.mail.BodyPart;
-import javax.mail.MessagingException;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMultipart;
-
 import fr.lixbox.common.exceptions.ProcessusException;
 import fr.lixbox.common.guid.GuidGenerator;
 import fr.lixbox.common.util.StringUtil;
+import jakarta.activation.DataHandler;
+import jakarta.activation.DataSource;
+import jakarta.activation.FileDataSource;
+import jakarta.activation.URLDataSource;
+import jakarta.mail.BodyPart;
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeBodyPart;
+import jakarta.mail.internet.MimeMultipart;
 
 
 /**
@@ -51,7 +50,7 @@ import fr.lixbox.common.util.StringUtil;
  * 
  * @author ludovic.terral
  */
-public class HtmlEmail extends Email
+public class HtmlEmailImpl extends EmailImpl
 {
     // ----------- Attribut -----------   
     public static final int CID_LENGTH = 10;
@@ -63,14 +62,14 @@ public class HtmlEmail extends Email
 
     
     // ----------- Methodes -----------  
-    public HtmlEmail()
+    public HtmlEmailImpl()
     {
         this.inlineEmbeds = new HashMap<>();
     }
 
     
 
-    public HtmlEmail setTextMsg(String aText)
+    public HtmlEmailImpl setTextMsg(String aText)
     {
         if (StringUtil.isEmpty(aText))
         {
@@ -118,7 +117,7 @@ public class HtmlEmail extends Email
         {
             InlineImage ii = this.inlineEmbeds.get(name);
             URLDataSource urlDataSource = (URLDataSource) ii.getDataSource();
-            if (url.equals(urlDataSource.getURL()))
+            if (url.toString().equals(urlDataSource.toString()))
             {
                 return ii.getCid();
             }

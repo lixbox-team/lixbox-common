@@ -23,10 +23,6 @@
  ******************************************************************************/
 package fr.lixbox.common.util;
 
-import javax.ejb.EJBTransactionRolledbackException;
-import javax.persistence.EntityNotFoundException;
-import javax.persistence.NoResultException;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.commons.logging.Log;
@@ -37,6 +33,9 @@ import fr.lixbox.common.exceptions.CriticalBusinessException;
 import fr.lixbox.common.exceptions.ProcessusException;
 import fr.lixbox.common.model.ConteneurEvenement;
 import fr.lixbox.common.resource.LixboxResources;
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.persistence.NoResultException;
+import jakarta.validation.ConstraintViolationException;
 
 /**
  * Cette classe gere le flot d'exception et renvoie l'exception
@@ -69,11 +68,11 @@ public class ExceptionUtil extends ExceptionUtils
         Exception result = null;
         
         //Traitement des exceptions de l'application
-        if (e instanceof javax.validation.ConstraintViolationException)
+        if (e instanceof ConstraintViolationException)
         {
             LOG.error(getRootCauseMessage(e));
             ConteneurEvenement conteneurEvenement = new ConteneurEvenement();
-            conteneurEvenement.addAll(((javax.validation.ConstraintViolationException)e).getConstraintViolations());
+            conteneurEvenement.addAll(((ConstraintViolationException)e).getConstraintViolations());
             result = new BusinessException(LixboxResources.getString("MSG.ERROR.EXCEPUTI_03", racineClasse),conteneurEvenement);
         }
         if (e instanceof BusinessException)
@@ -100,11 +99,6 @@ public class ExceptionUtil extends ExceptionUtils
         //Traitement des exceptions aleatoires
         if (e instanceof EntityNotFoundException ||
             e instanceof NoResultException)            
-        {
-            result = new BusinessException(LixboxResources.getString("MSG.ERROR.EXCEPUTI_01", racineClasse));
-        }
-        
-        if (e instanceof EJBTransactionRolledbackException && ((EJBTransactionRolledbackException) e).getCausedByException() instanceof EntityNotFoundException)            
         {
             result = new BusinessException(LixboxResources.getString("MSG.ERROR.EXCEPUTI_01", racineClasse));
         }
