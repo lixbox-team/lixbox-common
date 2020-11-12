@@ -63,7 +63,7 @@ public class Email
     {
         TypeReference<Email> typeRef = new TypeReference<Email>() {};
         Email result = null;
-        if (StringUtil.isNotEmpty(json) && typeRef != null) {
+        if (StringUtil.isNotEmpty(json)) {
             ObjectMapper mapper = new ObjectMapper();
             try 
             {

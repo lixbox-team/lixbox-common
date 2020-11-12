@@ -71,7 +71,7 @@ public class MailUtil implements Serializable
     private static final long serialVersionUID = -200828021426304L;
     private static final Log LOG = LogFactory.getLog(MailUtil.class);
     
-    private static final String PATH_SEPARATOR = "/";    
+    private static final String PATH_SEPARATOR = "/";
     private static final String PORT_SEPARATOR = ":";
     private static final EmailAdresse MAIL_FROM = new EmailAdresse("Application <noreply@dev.lan>");
     private static final String MAIL_TMP_PATH = System.getProperty("java.io.tmpdir");
@@ -389,11 +389,11 @@ public class MailUtil implements Serializable
     public String envoyerMail(Email email) throws BusinessException
     {
         // Preparation des adresses mail
-        EmailAdresse from = new EmailAdresse(email.getFrom());;
-        EmailList destinataires = new EmailList(email.getToList());;
-        EmailList copies = new EmailList(email.getCcList());;
-        EmailList copiesCachees = new EmailList(email.getBccList());;
-        EmailAdresse adresseRetour = new EmailAdresse(email.getFrom());;
+        EmailAdresse from = new EmailAdresse(email.getFrom());
+        EmailList destinataires = new EmailList(email.getToList());
+        EmailList copies = new EmailList(email.getCcList());
+        EmailList copiesCachees = new EmailList(email.getBccList());
+        EmailAdresse adresseRetour = new EmailAdresse(email.getFrom());
         
         
         // Preparation du mail

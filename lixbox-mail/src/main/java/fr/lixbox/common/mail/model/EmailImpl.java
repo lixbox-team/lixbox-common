@@ -89,7 +89,7 @@ public class EmailImpl
     private static final String ADDRESS_LIST_PROVIDED_WAS_INVALID = "Address List provided was invalid";
 
     // ----------- Attribut -----------
-    protected static final Log LOG = LogFactory.getLog(Email.class);    
+    protected static final Log LOG = LogFactory.getLog(EmailImpl.class);
     
     public static final String SENDER_EMAIL = "sender.email";
     public static final String SENDER_NAME = "sender.name";
