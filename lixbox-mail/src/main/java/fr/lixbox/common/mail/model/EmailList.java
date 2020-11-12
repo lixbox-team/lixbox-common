@@ -28,10 +28,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import javax.mail.internet.InternetAddress;
+import javax.xml.bind.annotation.XmlType;
+
 import fr.lixbox.common.util.CollectionUtil;
 import fr.lixbox.common.util.StringUtil;
-import jakarta.mail.internet.InternetAddress;
-import jakarta.xml.bind.annotation.XmlType;
 
 
 /**

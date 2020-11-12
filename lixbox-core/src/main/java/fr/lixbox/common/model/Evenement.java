@@ -26,6 +26,13 @@ package fr.lixbox.common.model;
 import java.io.Serializable;
 import java.util.Calendar;
 
+import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.validation.ConstraintViolation;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -35,12 +42,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import fr.lixbox.common.model.enumeration.NiveauEvenement;
 import fr.lixbox.common.util.StringUtil;
-import jakarta.persistence.Column;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.validation.ConstraintViolation;
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlType;
 
 
 /**

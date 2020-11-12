@@ -23,6 +23,10 @@
  ******************************************************************************/
 package fr.lixbox.common.util;
 
+import javax.persistence.EntityNotFoundException;
+import javax.persistence.NoResultException;
+import javax.validation.ConstraintViolationException;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.commons.logging.Log;
@@ -33,9 +37,6 @@ import fr.lixbox.common.exceptions.CriticalBusinessException;
 import fr.lixbox.common.exceptions.ProcessusException;
 import fr.lixbox.common.model.ConteneurEvenement;
 import fr.lixbox.common.resource.LixboxResources;
-import jakarta.persistence.EntityNotFoundException;
-import jakarta.persistence.NoResultException;
-import jakarta.validation.ConstraintViolationException;
 
 /**
  * Cette classe gere le flot d'exception et renvoie l'exception
