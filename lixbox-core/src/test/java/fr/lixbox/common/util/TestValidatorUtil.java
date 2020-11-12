@@ -30,8 +30,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
 
-import fr.lixbox.common.util.ValidatorUtil;
-
 public class TestValidatorUtil
 {
 	private static final Log LOG = LogFactory.getLog(TestValidatorUtil.class);

@@ -26,12 +26,10 @@ package fr.lixbox.common.util;
 
 import java.util.Calendar;
 
-import junit.framework.TestCase;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import fr.lixbox.common.util.DateUtil;
+import junit.framework.TestCase;
 
 
 /**
