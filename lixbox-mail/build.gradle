@@ -3,7 +3,9 @@ project(':lixbox-mail'){
 		compile project(':lixbox-core')
 
 		//jarkarta
-        compile group: 'jakarta.mail', name: 'jakarta.mail-api', version: '1.6.5'
+        compile group: 'jakarta.mail', name: 'jakarta.mail-api', version: '2.0.0'
+        compile group: 'jakarta.activation', name: 'jakarta.activation-api', version: '2.0.0'
+
         
         
         // ================================ Test ================================

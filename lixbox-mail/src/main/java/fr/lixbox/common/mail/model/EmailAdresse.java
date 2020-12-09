@@ -27,12 +27,12 @@ import java.beans.Transient;
 import java.io.Serializable;
 import java.text.MessageFormat;
 
-import javax.mail.internet.InternetAddress;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 import fr.lixbox.common.util.StringUtil;
+import jakarta.mail.internet.InternetAddress;
 
 /**
  * Cette classe est une combinaison entre un parser et un pojo compatible avec
