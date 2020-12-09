@@ -23,6 +23,7 @@
  ******************************************************************************/
 package fr.lixbox.common.exceptions;
 
+
 import fr.lixbox.common.model.ConteneurEvenement;
 
 

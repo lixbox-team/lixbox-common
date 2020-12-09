@@ -1,20 +1,13 @@
 project(':lixbox-mail'){    
 	dependencies {	     
-		compile project(':lixbox-core')        
+		compile project(':lixbox-core')
 
-		//jarkata
-        compileOnly (group: 'jakarta.xml.bind', name: 'jakarta.xml.bind-api', version: '2.3.3')
-        compileOnly group: 'jakarta.persistence', name: 'jakarta.persistence-api', version: '2.2.3'
-        compileOnly group: 'jakarta.activation', name: 'jakarta.activation-api', version: '2.0.0'
-        compile (group: 'jakarta.mail', name: 'jakarta.mail-api', version: '2.0.0')
+		//jarkarta
+        compile group: 'jakarta.mail', name: 'jakarta.mail-api', version: '1.6.5'
         
         
         // ================================ Test ================================
 		testImplementation 'junit:junit:4.13.1'
-        testCompileOnly (group: 'jakarta.xml.bind', name: 'jakarta.xml.bind-api', version: '2.3.3')
-        testCompileOnly group: 'jakarta.persistence', name: 'jakarta.persistence-api', version: '2.2.3'
-        testCompileOnly group: 'jakarta.activation', name: 'jakarta.activation-api', version: '2.0.0'
-        testCompileOnly (group: 'jakarta.xml.bind', name: 'jakarta.xml.bind-api', version: '2.3.3')
 	}
     
     jar{

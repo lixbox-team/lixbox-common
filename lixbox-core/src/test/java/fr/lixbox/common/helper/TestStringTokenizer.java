@@ -29,7 +29,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
 
-import fr.lixbox.common.helper.StringTokenizer;
 import junit.framework.TestCase;
 
 

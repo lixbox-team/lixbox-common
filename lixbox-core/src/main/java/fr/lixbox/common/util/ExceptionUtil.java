@@ -25,6 +25,7 @@ package fr.lixbox.common.util;
 
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.NoResultException;
+import javax.validation.ConstraintViolationException;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
@@ -68,11 +69,11 @@ public class ExceptionUtil extends ExceptionUtils
         Exception result = null;
         
         //Traitement des exceptions de l'application
-        if (e instanceof javax.validation.ConstraintViolationException)
+        if (e instanceof ConstraintViolationException)
         {
             LOG.error(getRootCauseMessage(e));
             ConteneurEvenement conteneurEvenement = new ConteneurEvenement();
-            conteneurEvenement.addAll(((javax.validation.ConstraintViolationException)e).getConstraintViolations());
+            conteneurEvenement.addAll(((ConstraintViolationException)e).getConstraintViolations());
             result = new BusinessException(LixboxResources.getString("MSG.ERROR.EXCEPUTI_03", racineClasse),conteneurEvenement);
         }
         if (e instanceof BusinessException)

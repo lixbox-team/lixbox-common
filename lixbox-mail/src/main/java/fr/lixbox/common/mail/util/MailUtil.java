@@ -33,6 +33,18 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.mail.Flags;
+import javax.mail.Folder;
+import javax.mail.Message;
+import javax.mail.Message.RecipientType;
+import javax.mail.MessagingException;
+import javax.mail.Multipart;
+import javax.mail.Part;
+import javax.mail.Session;
+import javax.mail.Store;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMultipart;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -41,23 +53,13 @@ import fr.lixbox.common.exceptions.ProcessusException;
 import fr.lixbox.common.mail.model.Email;
 import fr.lixbox.common.mail.model.EmailAdresse;
 import fr.lixbox.common.mail.model.EmailAttachement;
+import fr.lixbox.common.mail.model.EmailImpl;
 import fr.lixbox.common.mail.model.EmailList;
-import fr.lixbox.common.mail.model.HtmlEmail;
+import fr.lixbox.common.mail.model.HtmlEmailImpl;
 import fr.lixbox.common.model.ConteneurEvenement;
 import fr.lixbox.common.resource.LixboxResources;
 import fr.lixbox.common.util.CollectionUtil;
 import fr.lixbox.common.util.StringUtil;
-import jakarta.mail.Flags;
-import jakarta.mail.Folder;
-import jakarta.mail.Message;
-import jakarta.mail.Message.RecipientType;
-import jakarta.mail.MessagingException;
-import jakarta.mail.Multipart;
-import jakarta.mail.Part;
-import jakarta.mail.Session;
-import jakarta.mail.Store;
-import jakarta.mail.internet.InternetAddress;
-import jakarta.mail.internet.MimeMultipart;
 
 /**
  * Cette methode est un utilitaire d'envoie de mail.
@@ -70,9 +72,9 @@ public class MailUtil implements Serializable
     private static final long serialVersionUID = -200828021426304L;
     private static final Log LOG = LogFactory.getLog(MailUtil.class);
     
-    private static final String PATH_SEPARATOR = "/";    
+    private static final String PATH_SEPARATOR = "/";
     private static final String PORT_SEPARATOR = ":";
-    private static final EmailAdresse MAIL_FROM = new EmailAdresse("Application <noreply@dev.lan>");    
+    private static final EmailAdresse MAIL_FROM = new EmailAdresse("Application <noreply@dev.lan>");
     private static final String MAIL_TMP_PATH = System.getProperty("java.io.tmpdir");
     
     private final ConteneurEvenement conteneurEvent = new ConteneurEvenement();
@@ -125,7 +127,7 @@ public class MailUtil implements Serializable
                     throws BusinessException
     {
         // Preparation du mail
-        final Email email = prepareMail(new Email(), from, destinataires, copies, copiesCachees,
+        final EmailImpl email = prepareMail(new EmailImpl(), from, destinataires, copies, copiesCachees,
                 objet, message, adresseRetour);
         // Envoi du mail
         return envoyerMail(email);
@@ -162,7 +164,7 @@ public class MailUtil implements Serializable
         copiesCachees = new EmailList(strCopiesCachees);
         adresseRetour = new EmailAdresse(strAdresseRetour);
         // Preparation du mail
-        final Email email = prepareMail(new Email(), from, destinataires, copies, copiesCachees,
+        final EmailImpl email = prepareMail(new EmailImpl(), from, destinataires, copies, copiesCachees,
                 objet, message, adresseRetour);
         // Envoi du mail
         return envoyerMail(email);
@@ -222,7 +224,7 @@ public class MailUtil implements Serializable
             EmailAdresse adresseRetour, List<Object> piecesJointes) throws BusinessException
     {
         // Preparation du mail
-        Email email = prepareMail(new Email(), from, destinataires, copies, copiesCachees, objet,
+        EmailImpl email = prepareMail(new EmailImpl(), from, destinataires, copies, copiesCachees, objet,
                 message, adresseRetour);
         // Ajout de la ou des pieces jointes
         email = attacherPiecesJointes(email, piecesJointes);
@@ -253,7 +255,7 @@ public class MailUtil implements Serializable
             EmailAdresse adresseRetour) throws BusinessException
     {
         // Preparation du mail
-        HtmlEmail email = prepareMail(new HtmlEmail(), from, destinataires, copies, copiesCachees,
+        HtmlEmailImpl email = prepareMail(new HtmlEmailImpl(), from, destinataires, copies, copiesCachees,
                 objet, message, adresseRetour);
         return email.sendMimeMessage();
     }
@@ -269,10 +271,10 @@ public class MailUtil implements Serializable
      * 
      * @return liste Email
      */
-    public List<Email> recevoirMailPop3(EmailAdresse boite, String motDePasse)
+    public List<EmailImpl> recevoirMailPop3(EmailAdresse boite, String motDePasse)
     {
         Message[] messages = null;
-        List<Email> result = new ArrayList<>();
+        List<EmailImpl> result = new ArrayList<>();
         try
         {
             Object[] params = connecterPop3(boite, motDePasse);
@@ -284,7 +286,7 @@ public class MailUtil implements Serializable
             {
                 for (Message msg : messages)
                 {
-                    Email email = new Email();
+                    EmailImpl email = new EmailImpl();
                     email.setHostName(this.hostMailName);
                     email.setFrom((InternetAddress) msg.getFrom()[0]);
                     email.addTo((InternetAddress[]) msg.getRecipients(RecipientType.TO));
@@ -349,7 +351,7 @@ public class MailUtil implements Serializable
      * @param motDePasse
      * @param email
      */
-    public void supprimerMailPop3(EmailAdresse boite, String motDePasse, Email email)
+    public void supprimerMailPop3(EmailAdresse boite, String motDePasse, EmailImpl email)
     {
         try
         {
@@ -383,8 +385,35 @@ public class MailUtil implements Serializable
      * @param email
      * 
      * @return idMailEnvoye
+     * @throws BusinessException 
      */
-    public String envoyerMail(Email email)
+    public String envoyerMail(Email email) throws BusinessException
+    {
+        // Preparation des adresses mail
+        EmailAdresse from = new EmailAdresse(email.getFrom());
+        EmailList destinataires = new EmailList(email.getToList());
+        EmailList copies = new EmailList(email.getCcList());
+        EmailList copiesCachees = new EmailList(email.getBccList());
+        EmailAdresse adresseRetour = new EmailAdresse(email.getFrom());
+        
+        
+        // Preparation du mail
+        final EmailImpl sender = prepareMail(new EmailImpl(), from, destinataires, copies, copiesCachees,
+                email.getSubject(), email.getMsg(), adresseRetour);
+        // Envoi du mail
+        return envoyerMail(sender);
+    }
+    
+
+
+    /**
+     * Cette methode gere l envoi du mail.
+     * 
+     * @param email
+     * 
+     * @return idMailEnvoye
+     */
+    public String envoyerMail(EmailImpl email)
     {
         try
         {
@@ -443,7 +472,7 @@ public class MailUtil implements Serializable
      * @param email
      *            mis a jour
      */
-    private static Email recupererPiecesJointes(Message msg, Email email)
+    private static EmailImpl recupererPiecesJointes(Message msg, EmailImpl email)
     {
         try
         {
@@ -507,7 +536,7 @@ public class MailUtil implements Serializable
      * 
      * @return email
      */
-    private <T extends Email> T prepareMail(T email, EmailAdresse from, EmailList destinataires,
+    private <T extends EmailImpl> T prepareMail(T email, EmailAdresse from, EmailList destinataires,
             EmailList copies, EmailList copiesCachees, String objet, String message,
             EmailAdresse returnAddress) throws BusinessException
     {
@@ -553,7 +582,7 @@ public class MailUtil implements Serializable
             }
             email.setBounceAddress(adresseRetour.getAdresseMail());
             email.setSubject(objet);
-            if (!(email instanceof HtmlEmail))
+            if (!(email instanceof HtmlEmailImpl))
             {
                 if (!StringUtil.isEmpty(message))
                 {
@@ -587,7 +616,7 @@ public class MailUtil implements Serializable
      * 
      * @return email
      */
-    private <T extends Email> T attacherPiecesJointes(T email, List<Object> piecesJointes)
+    private <T extends EmailImpl> T attacherPiecesJointes(T email, List<Object> piecesJointes)
             throws BusinessException
     {
         // Controle des parametres

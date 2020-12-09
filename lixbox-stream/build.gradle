@@ -1,16 +1,13 @@
 project(':lixbox-stream'){    
 	dependencies {	     
-		implementation project(':lixbox-core')        
+		implementation project(':lixbox-core')
 
-        
         implementation 'org.apache.tika:tika-core:1.24.1'
         implementation (group: 'org.apache.commons', name: 'commons-jexl3', version: '3.1') 
         
         
         // ================================ Test ================================
 		testImplementation 'junit:junit:4.13.1'
-        testCompileOnly (group: 'jakarta.platform', name: 'jakarta.jakartaee-api', version: '8.0.0')
-        testCompileOnly (group: 'jakarta.xml.bind', name: 'jakarta.xml.bind-api', version: '2.3.3')
 	}
     
     jar{

@@ -24,12 +24,10 @@
 package fr.lixbox.common.util;
 
 
-import junit.framework.TestCase;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import fr.lixbox.common.util.StringUtil;
+import junit.framework.TestCase;
 
 
 /**

@@ -29,7 +29,6 @@ import java.util.Calendar;
 import java.util.List;
 
 import fr.lixbox.common.model.Evenement;
-import fr.lixbox.common.util.CollectionUtil;
 import junit.framework.TestCase;
 
 
