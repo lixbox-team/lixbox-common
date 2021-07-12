@@ -1,20 +1,20 @@
 project(':lixbox-core'){    
 	dependencies {     
         //jakarta
-        implementation group: 'jakarta.xml.bind', name: 'jakarta.xml.bind-api', version: '2.3.3'
-        implementation group: 'jakarta.validation', name: 'jakarta.validation-api', version: '2.0.2'
-        implementation group: 'jakarta.persistence', name: 'jakarta.persistence-api', version: '2.2.3'
+        api group: 'jakarta.xml.bind', name: 'jakarta.xml.bind-api', version: '2.3.3'
+        api group: 'jakarta.validation', name: 'jakarta.validation-api', version: '2.0.2'
+        api group: 'jakarta.persistence', name: 'jakarta.persistence-api', version: '2.2.3'
         
-        //jackson
-        implementation 'com.fasterxml.jackson.core:jackson-core:2.12.4'
-        implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.4'
-      
+//        //jackson
+        api 'com.fasterxml.jackson.core:jackson-core:2.12.4'
+        api 'com.fasterxml.jackson.core:jackson-databind:2.12.4'
+//      
         //apache
-        implementation 'commons-beanutils:commons-beanutils:1.9.4'
-        implementation 'commons-codec:commons-codec:1.15'
-        implementation 'org.apache.commons:commons-collections4:4.4'
-        implementation 'commons-io:commons-io:2.10.0'
-        implementation 'org.apache.commons:commons-lang3:3.12.0'
+        api 'commons-beanutils:commons-beanutils:1.9.4'
+        api 'commons-codec:commons-codec:1.15'
+        api 'org.apache.commons:commons-collections4:4.4'
+        api 'commons-io:commons-io:2.10.0'
+        api 'org.apache.commons:commons-lang3:3.12.0'
         
         
         // ================================ Test ================================

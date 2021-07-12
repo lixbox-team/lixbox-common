@@ -1,7 +1,21 @@
 <?xml version="1.0"?>
 <FindBugsFilter>
     <Match>
+        <Bug code="EI" />
+    </Match>
+    <Match>
+        <Bug code="EI2" />
+    </Match>
+    <Match>
         <Bug code="OBL" />
+    </Match>
+    <Match>
+        <Class name="fr.lixbox.common.util.BeanUtil" />
+        <Bug code="MS" />
+    </Match>
+    <Match>
+        <Class name="fr.lixbox.common.util.NumberUtil" />
+        <Bug code="DMI" />
     </Match>
     <Match>
         <Class name="fr.lixbox.common.mail.model.HtmlEmail" />

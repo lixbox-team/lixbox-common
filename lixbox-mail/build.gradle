@@ -1,9 +1,9 @@
 project(':lixbox-mail'){    
-	dependencies {	     
-		implementation project(':lixbox-core')
+	dependencies {
+        api project(':lixbox-core')
 
 		//jarkarta
-        implementation group: 'jakarta.mail', name: 'jakarta.mail-api', version: '1.6.7'
+        api group: 'jakarta.mail', name: 'jakarta.mail-api', version: '1.6.7'
         
         
         // ================================ Test ================================
