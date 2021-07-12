@@ -68,10 +68,10 @@ if (config.desc_project.withQuarkus)
 {
     apply from: 'gradle/with-quarkus.gradle'  
 }
+apply from: 'gradle/project-critical-update.gradle'
 
 import org.ajoberstar.grgit.Credentials
 import  org.ajoberstar.grgit.Person
-import  org.apache.commons.io.IOUtils
 import groovy.io.FileType
 
 sonarqube  {
@@ -103,7 +103,6 @@ allprojects {
     repositories{
         mavenLocal()
         mavenCentral()
-        jcenter()
         maven{
             url jarReposUrl
             credentials{
@@ -255,44 +254,44 @@ subprojects {
             }
         }
         wtp.component{
-              minusConfigurations << configurations.compileOnly
+              minusConfigurations << configurations.compileClasspath
         }
     }
 		
 	sourceSets {
 	  integrationTest {
 	    java{
-          compileClasspath = sourceSets.main.output + sourceSets.test.output + configurations.testRuntime
+          compileClasspath = sourceSets.main.output + sourceSets.test.output
           runtimeClasspath = output + compileClasspath
 	    }
 	  }  
 	  acceptanceTest {
         java{
-  		  compileClasspath = sourceSets.main.output + sourceSets.test.output + configurations.testRuntime
+  		  compileClasspath = sourceSets.main.output + sourceSets.test.output
 		  runtimeClasspath = output + compileClasspath
 		}
 	  }	  
 	  smokeTest {
         java{
-          compileClasspath = sourceSets.main.output + sourceSets.test.output + configurations.testRuntime
+          compileClasspath = sourceSets.main.output + sourceSets.test.output
           runtimeClasspath = output + compileClasspath
         }
 	  }  
 	  loadTest {
         java{
-          compileClasspath = sourceSets.main.output + sourceSets.test.output + configurations.testRuntime
+          compileClasspath = sourceSets.main.output + sourceSets.test.output
           runtimeClasspath = output + compileClasspath
         }
 	  }
       uiTest {
         java.srcDir file("src/uiTest/java")
         resources.srcDir file("src/uiTest/resources")
-        compileClasspath = sourceSets.main.output + configurations.testRuntime
+        compileClasspath = sourceSets.main.output
         runtimeClasspath = output + compileClasspath
       }
       wsTest {
         java{
-          compileClasspath = sourceSets.main.output + sourceSets.test.output + configurations.testRuntime
+          compileClasspath = sourceSets.main.output + sourceSets.test.output
           runtimeClasspath = output + compileClasspath
         }
       }
@@ -383,7 +382,7 @@ subprojects {
     }
 
     spotbugs {
-        toolVersion = '3.1.12'
+        toolVersion = '4.1.0'
         effort = 'max'
         excludeFilter file('../gradle/config/findbugsExcludeFilter.xml')
     }
@@ -444,7 +443,7 @@ subprojects {
         tasks.publish.finalizedBy(tagRelease);
     }
     
-    tasks.eclipse.dependsOn tasks.cleanEclipse    
+    tasks.eclipse.dependsOn tasks.cleanEclipse
     tasks.check.dependsOn(tasks.generateLicenseReport);
     tasks.check.dependsOn(tasks.dependencyCheckAnalyze);
 }

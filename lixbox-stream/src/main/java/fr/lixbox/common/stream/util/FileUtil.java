@@ -32,6 +32,7 @@ import org.apache.tika.Tika;
 
 import fr.lixbox.common.util.StringUtil;
 
+@SuppressWarnings("deprecation")
 public class FileUtil extends FileUtils
 {
     // ----------- Attribut(s) -----------
@@ -42,14 +43,7 @@ public class FileUtil extends FileUtils
     
 
     // ----------- Methode(s) -----------
-    private FileUtil()
-    {
-        // constructeur servant à transformer la classe en utilitaire
-    }
-    
-    
-
-    /**
+   /**
      * Cette methode identifie le type Mime d'un fichier ou d'un repertoire
      * 
      * @param fichier

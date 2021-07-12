@@ -1,13 +1,13 @@
 project(':lixbox-mail'){    
 	dependencies {	     
-		compile project(':lixbox-core')
+		implementation project(':lixbox-core')
 
 		//jarkarta
-        compile group: 'jakarta.mail', name: 'jakarta.mail-api', version: '1.6.5'
+        implementation group: 'jakarta.mail', name: 'jakarta.mail-api', version: '1.6.7'
         
         
         // ================================ Test ================================
-		testImplementation 'junit:junit:4.13.1'
+        testImplementation group:'junit', name:'junit', version: junit_version
 	}
     
     jar{

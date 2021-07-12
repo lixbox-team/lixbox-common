@@ -1,24 +1,24 @@
 project(':lixbox-core'){    
 	dependencies {     
         //jakarta
-        compile group: 'jakarta.xml.bind', name: 'jakarta.xml.bind-api', version: '2.3.3'
-        compile group: 'jakarta.validation', name: 'jakarta.validation-api', version: '2.0.2'
-        compile group: 'jakarta.persistence', name: 'jakarta.persistence-api', version: '2.2.3'
+        implementation group: 'jakarta.xml.bind', name: 'jakarta.xml.bind-api', version: '2.3.3'
+        implementation group: 'jakarta.validation', name: 'jakarta.validation-api', version: '2.0.2'
+        implementation group: 'jakarta.persistence', name: 'jakarta.persistence-api', version: '2.2.3'
         
         //jackson
-        compile 'com.fasterxml.jackson.core:jackson-core:2.11.3'
-        compile 'com.fasterxml.jackson.core:jackson-databind:2.11.3'
+        implementation 'com.fasterxml.jackson.core:jackson-core:2.12.4'
+        implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.4'
       
         //apache
-        compile 'commons-beanutils:commons-beanutils:1.9.4'
-        compile 'commons-codec:commons-codec:1.15'
-        compile 'org.apache.commons:commons-collections4:4.4'
-        compile 'commons-io:commons-io:2.8.0'
-        compile 'org.apache.commons:commons-lang3:3.11'
+        implementation 'commons-beanutils:commons-beanutils:1.9.4'
+        implementation 'commons-codec:commons-codec:1.15'
+        implementation 'org.apache.commons:commons-collections4:4.4'
+        implementation 'commons-io:commons-io:2.10.0'
+        implementation 'org.apache.commons:commons-lang3:3.12.0'
         
         
         // ================================ Test ================================
-		testCompile 'junit:junit:4.13.1'
+		testImplementation group:'junit', name:'junit', version: junit_version
 	}
     
     jar{
