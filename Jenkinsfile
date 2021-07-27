@@ -14,7 +14,7 @@ def onFailed(e) {
     mattermostSend channel: channel, color: '#dd4040', endpoint: mattermostUri, message: msg, text: title
 }
     
-node('slave-gradle-jdk11'){
+node('slave-gradle-graalvm'){
     stage('Init'){
         echo 'Initialisation started'
         try{
