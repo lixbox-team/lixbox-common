@@ -97,8 +97,6 @@ task tagRelease() {
         println("VERSION $project.version IS TAGGED AND RELEASED")
     }
 }
-
-
     
 sonarQuality{
     projectKey "${config.desc_project.artefact.projectKey}"
@@ -144,6 +142,10 @@ subprojects {
 	    withJavadocJar()
 	    withSourcesJar()
 	}
+
+    javadoc {
+        options.encoding = 'UTF-8'
+    }
         
     publishing {
         publications {
