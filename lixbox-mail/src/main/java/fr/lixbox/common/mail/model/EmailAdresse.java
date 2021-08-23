@@ -134,7 +134,7 @@ public class EmailAdresse implements Serializable
      */
     private String extraireAdresseMail(String adresseLitterale)
     {
-        String result = "";
+        var result = "";
         if (!StringUtil.isEmpty(adresseLitterale))
         {
             if ((adresseLitterale.indexOf('<') != -1) &&
@@ -161,14 +161,13 @@ public class EmailAdresse implements Serializable
      */
     private String extraireNom(String adresseLitterale)
     {
-        String result = "";
+        var result = "";
         if (!StringUtil.isEmpty(adresseLitterale) && ((adresseLitterale.indexOf('<') != -1) &&
                     (adresseLitterale.indexOf('>') != -1)))
         {
             result =adresseLitterale
                         .substring(0, adresseLitterale.indexOf('<'))
-                        .replaceAll("\"", "")
-                            .trim();
+                        .replace("\"", "").trim();
         }
         return result;
     }
@@ -182,7 +181,7 @@ public class EmailAdresse implements Serializable
      */
     private String extraireNomUtilisateur()
     {
-        String result = "";
+        var result = "";
         if (!StringUtil.isEmpty(adresseMail))
         {
             if (adresseMail.indexOf('@') != -1)

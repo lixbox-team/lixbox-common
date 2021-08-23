@@ -31,7 +31,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
 
 import fr.lixbox.common.util.StringUtil;
 
@@ -64,7 +63,7 @@ public class Email
         TypeReference<Email> typeRef = new TypeReference<Email>() {};
         Email result = null;
         if (StringUtil.isNotEmpty(json)) {
-            ObjectMapper mapper = new ObjectMapper();
+            var mapper = new ObjectMapper();
             try 
             {
                 result = mapper.readValue(json, typeRef);
@@ -167,9 +166,9 @@ public class Email
     @Override
     public String toString()
     {
-        String result = "";
-        ObjectMapper mapper = new ObjectMapper();
-        ObjectWriter writer = mapper.writer();
+        var result = "";
+        var mapper = new ObjectMapper();
+        var writer = mapper.writer();
         try {
             result = writer.writeValueAsString(this);
         } 
