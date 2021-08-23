@@ -76,7 +76,7 @@ public class StringTokenizer
         	this.maxPosition = str.length();
         	this.delimiters = delim;
             currentPosition = 0 - delimiters.length();
-            boolean valide = true;
+            var valide = true;
         	if (controle)
             {
      			valide = str.contains(delimiters);
@@ -101,7 +101,7 @@ public class StringTokenizer
     {        
         tokens = new ArrayList<>();
         int sizeDelimiters = delimiters.length();
-        boolean valide = true;
+        var valide = true;
         if (controle)
         {
 			valide = str.contains(delimiters);
@@ -115,7 +115,7 @@ public class StringTokenizer
                 {
                     newPosition = maxPosition;
                 }
-                String substring = StringUtils.mid(str, currentPosition + sizeDelimiters, newPosition - currentPosition - sizeDelimiters);                 // $codepro.audit.disable variableDeclaredInLoop
+                var substring = StringUtils.mid(str, currentPosition + sizeDelimiters, newPosition - currentPosition - sizeDelimiters);                 // $codepro.audit.disable variableDeclaredInLoop
                 if (!("\n".equalsIgnoreCase(delimiters) && StringUtil.isEmpty(substring)))
                 {
                 	tokens.add(substring);

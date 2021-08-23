@@ -113,14 +113,14 @@ public class GuidGenerator implements Serializable
      */
     private String generateGUID(final Object object)
     {
-        final StringBuilder tmpBuffer = new StringBuilder(16);
+        final var tmpBuffer = new StringBuilder(16);
         final String hashcode = hexFormat(System.identityHashCode(object), 8);
         tmpBuffer.append(this.hexServerIP);
         tmpBuffer.append(hashcode);
            
-        final int node = this.seeder.nextInt();
+        final var node = this.seeder.nextInt();
 
-        final StringBuilder guid = new StringBuilder(32);
+        final var guid = new StringBuilder(32);
         guid.append(tmpBuffer.toString());
         guid.append(hexFormat(node, 8));
 
@@ -142,7 +142,7 @@ public class GuidGenerator implements Serializable
      */
     private String generateReference(final String prefixe) 
     {
-        final StringBuilder nRef = new StringBuilder(32);
+        final var nRef = new StringBuilder(32);
         nRef.append(prefixe);
         nRef.append('-');
         nRef.append(DateUtil.format(Calendar.getInstance(), "ddMMyyyy"));
@@ -165,11 +165,11 @@ public class GuidGenerator implements Serializable
      */
     private String getRandomCode()
     {
-        final int number = this.seeder.nextInt(1679616);
-        String texte = Integer.toString(number, 36);
+        final var number = this.seeder.nextInt(1679616);
+        var texte = Integer.toString(number, 36);
         final int delta = 4 - texte.length();
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < delta; i++) 
+        var sb = new StringBuilder();
+        for (var i = 0; i < delta; i++) 
         {
             sb.append('0');
             sb.append(texte);
@@ -191,9 +191,9 @@ public class GuidGenerator implements Serializable
      */
     private static int getInt(final byte[] bytes)
     {
-        int index1 = 0;
-        int index2 = 24;
-        int index3 = 0;
+        var index1 = 0;
+        var index2 = 24;
+        var index3 = 0;
         
         while (index2 >= 0)
         {
@@ -219,7 +219,7 @@ public class GuidGenerator implements Serializable
      */
     private static String hexFormat(final int valeur, final int pad)
     {
-        final String result = Integer.toHexString(valeur);
+        final var result = Integer.toHexString(valeur);
 
         return padHex(result, pad) + result;
     }
@@ -239,11 +239,11 @@ public class GuidGenerator implements Serializable
      */
     private static String padHex(final String valeur, final int pad)
     {
-        final StringBuilder tmpBuffer = new StringBuilder(32);
+        final var tmpBuffer = new StringBuilder(32);
         final int lengthValeur = valeur.length();
         if (lengthValeur < pad)
         {
-            for (int j = 0; j < (pad - lengthValeur); j++)
+            for (var j = 0; j < (pad - lengthValeur); j++)
             {
                 tmpBuffer.append('0');
             }

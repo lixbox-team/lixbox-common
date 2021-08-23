@@ -24,7 +24,6 @@
 package fr.lixbox.common.thread;
 
 import java.io.Serializable;
-import java.lang.reflect.Method;
 
 import fr.lixbox.common.exceptions.BusinessException;
 
@@ -61,12 +60,13 @@ public class GenericThread<T> extends Thread implements Serializable, Runnable
 
     
     @SuppressWarnings("unchecked")
+    @Override
     public void run()
     {
         try
         {
         	isLaunched = true;
-            final Method method = instance.getClass().getMethod(nomMethode, typeParams);
+            final var method = instance.getClass().getMethod(nomMethode, typeParams);
             if (null != method)
             {
                 result = (T) method.invoke(instance, params);
@@ -74,7 +74,7 @@ public class GenericThread<T> extends Thread implements Serializable, Runnable
         }
         catch(Exception e)
         {
-            if (BusinessException.class.isInstance(e.getCause()))
+            if (e.getCause() instanceof BusinessException)
             {
                 final BusinessException be = (BusinessException) e.getCause();
                 result = (T) be.getConteneur();

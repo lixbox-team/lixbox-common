@@ -54,7 +54,7 @@ public class BooleanConverter extends BaseConverter implements Serializable
         String result = null;
         if (null != target)
         {        
-            final boolean isTrue = ((Boolean) target).booleanValue();        
+            var isTrue = ((Boolean) target).booleanValue();
             result = isTrue ? "true" : "false";
         }
         return result;

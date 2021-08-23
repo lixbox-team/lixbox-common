@@ -109,8 +109,8 @@ public class ObjectUtil extends ObjectUtils
     public static ConteneurEvenement extraireDifference(Object objet1, Object objet2, 
             String pathLogique, String[] excludedProperties)
     {
-        final ConteneurEvenement contEvent=new ConteneurEvenement();
-        final Contexte contexte = new Contexte();
+        final var contEvent=new ConteneurEvenement();
+        final var contexte = new Contexte();
         contexte.put("parent", pathLogique); //$NON-NLS-1$     
         final List<String> listeExcludeProperties = new ArrayList<>();
         CollectionUtil.addAll(listeExcludeProperties, excludedProperties);
@@ -203,7 +203,7 @@ public class ObjectUtil extends ObjectUtils
                 }
                 else
                 {                        
-                    for (int j=0; j < listeField1.length; j++)
+                    for (var j=0; j < listeField1.length; j++)
                     {
                         if (!listeExcludeProperties.contains(listeField1[j].getName()))
                         {
@@ -252,9 +252,9 @@ public class ObjectUtil extends ObjectUtils
      */
     public static boolean isSimpleType(Object objet)
     {
-        boolean isSimple = true;          
+        var isSimple = true;          
         final int length = objet.getClass().getDeclaredFields().length;
-        for (int j=0; j < length; j++)
+        for (var j=0; j < length; j++)
         {
             try
             {

@@ -72,7 +72,7 @@ public class ConteneurEvenement implements Serializable
         ConteneurEvenement result = null;
         TypeReference<ConteneurEvenement> typeRef = new TypeReference<ConteneurEvenement>() {};
         if (StringUtil.isNotEmpty(json)) {
-            ObjectMapper mapper = new ObjectMapper();
+            var mapper = new ObjectMapper();
 
             try {
                 result = mapper.readValue(json, typeRef);
@@ -116,7 +116,7 @@ public class ConteneurEvenement implements Serializable
         if (null != conteneur)
         {
             this.add(conteneur.getEvenements());
-            this.setMapEvenements(new TreeMap<String, Evenement>(evenements));
+            this.setMapEvenements(new TreeMap<>(evenements));
         }
     }
 
@@ -128,7 +128,7 @@ public class ConteneurEvenement implements Serializable
         {
             for (ConstraintViolation<?> violation : constraintViolations)
             {
-                Evenement event = new Evenement(violation, new Contexte());
+                var event = new Evenement(violation, new Contexte());
                 this.evenements.put(event.toString(), event);
             }
         }
@@ -311,7 +311,7 @@ public class ConteneurEvenement implements Serializable
      */
     public void add(final NiveauEvenement niveau, final String libelle, final Contexte contexte)
     {
-        final Contexte contexte1 = new Contexte(contexte);
+        final var contexte1 = new Contexte(contexte);
         if (!StringUtil.isEmpty(contexte1.get(PARENT_CTX)))
         {
             contexte1.put(PARENT_CTX, contexte1.get(PARENT_CTX)
@@ -335,7 +335,7 @@ public class ConteneurEvenement implements Serializable
     public void add(final NiveauEvenement niveau, final String libelle, final Calendar dateEvent,
             final Contexte contexte)
     {
-        final Contexte contexte1 = new Contexte(contexte);
+        final var contexte1 = new Contexte(contexte);
         if (!StringUtil.isEmpty(contexte1.get(PARENT_CTX)))
         {
             contexte1.put(PARENT_CTX, contexte1.get(PARENT_CTX)
@@ -361,7 +361,7 @@ public class ConteneurEvenement implements Serializable
     public void add(final NiveauEvenement niveau, final String libelle, final String referenceName,
             final String referenceValue)
     {
-        final Contexte contexte = new Contexte();
+        final var contexte = new Contexte();
         contexte.put(referenceName, referenceValue);
         evenements.put(new Evenement(niveau, libelle, contexte).toString(),
                 new Evenement(niveau, libelle, contexte));
@@ -383,7 +383,7 @@ public class ConteneurEvenement implements Serializable
     public void add(final NiveauEvenement niveau, final String libelle, final Calendar dateEvent,
             final String referenceName, final String referenceValue)
     {
-        final Contexte contexte = new Contexte();
+        final var contexte = new Contexte();
         contexte.put(referenceName, referenceValue);
         evenements.put(new Evenement(niveau, libelle, dateEvent, contexte).toString(),
                 new Evenement(niveau, libelle, dateEvent, contexte));
@@ -405,7 +405,7 @@ public class ConteneurEvenement implements Serializable
     public void add(final NiveauEvenement niveau, final String libelle, final Calendar dateEvent,
             final Contexte contexte, final String elementValue)
     {
-        final Contexte contexte1 = new Contexte(contexte);
+        final var contexte1 = new Contexte(contexte);
         contexte1.put(ELM_CTX, elementValue);
         evenements.put(new Evenement(niveau, libelle, dateEvent, contexte1).toString(),
                 new Evenement(niveau, libelle, dateEvent, contexte1));
@@ -494,8 +494,8 @@ public class ConteneurEvenement implements Serializable
     @Override
     public String toString()
     {
-        String result = "Content error";
-        ObjectMapper mapper = new ObjectMapper();
+        var result = "Content error";
+        var mapper = new ObjectMapper();
         try {
             result = mapper.writeValueAsString(this);
         } 

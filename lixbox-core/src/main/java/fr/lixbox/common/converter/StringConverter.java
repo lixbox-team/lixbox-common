@@ -52,7 +52,7 @@ public class StringConverter extends BaseConverter
     @Override
     public String formatForPresentation(Object target)   
     {
-        return (null == target)?"":target.toString(); //$NON-NLS-1$
+        return (null == target)?"":target.toString();
     }
 
     
@@ -65,7 +65,7 @@ public class StringConverter extends BaseConverter
             value = value.replace("", "");
 
             // Avoid anything between script tags
-            Pattern scriptPattern = Pattern.compile("<script>(.*?)</script>", Pattern.CASE_INSENSITIVE);
+            var scriptPattern = Pattern.compile("<script>(.*?)</script>", Pattern.CASE_INSENSITIVE);
             value = scriptPattern.matcher(value).replaceAll("");
 
             // Avoid anything in a src='...' type of expression

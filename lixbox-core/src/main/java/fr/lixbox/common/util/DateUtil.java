@@ -63,7 +63,7 @@ public class DateUtil extends DateUtils
         }
         if (null != date)
         {
-            final FastDateFormat dateFormat = FastDateFormat.getInstance(pattern);
+            final var dateFormat = FastDateFormat.getInstance(pattern);
             if (date instanceof Date)
             {
                 return dateFormat.format((Date) date);
@@ -123,7 +123,7 @@ public class DateUtil extends DateUtils
         {       
             if (!StringUtil.isEmpty(cal))
             {
-                final Date date = DateUtils.parseDate(cal, parsePatterns);
+                final var date = DateUtils.parseDate(cal, parsePatterns);
                 result= Calendar.getInstance();
                 result.setTime(date);
             }
@@ -183,7 +183,7 @@ public class DateUtil extends DateUtils
             {
             	Locale.setDefault(locale);
             	TimeZone.setDefault(timeZone);
-                final Date date = DateUtils.parseDate(cal, pattern);
+                final var date = DateUtils.parseDate(cal, pattern);
                 result = Calendar.getInstance();
                 result.setTime(date);
             }            
@@ -241,7 +241,7 @@ public class DateUtil extends DateUtils
      */
     public static Date addDelayToDate(Date dateOrig, long delay)
     {
-        final Calendar cal=Calendar.getInstance();
+        final var cal=Calendar.getInstance();
         final long d1 = dateOrig.getTime() + delay;
         cal.setTimeInMillis(d1);
         return cal.getTime();
@@ -315,7 +315,7 @@ public class DateUtil extends DateUtils
     	
     	if (pattern != null && !pattern.isEmpty())
     	{
-    		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+    	    var formatter = DateTimeFormatter.ofPattern(pattern);
     		result = LocalDate.parse(value, formatter);
     	}
     	else
@@ -340,7 +340,7 @@ public class DateUtil extends DateUtils
     	
     	if (pattern != null && !pattern.isEmpty())
     	{
-    		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+    	    var formatter = DateTimeFormatter.ofPattern(pattern);
     		result = date.format(formatter);
     	}
     	else

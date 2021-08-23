@@ -68,7 +68,7 @@ public class StringUtil extends StringUtils
     private static List<String> initMap()
     {
         final List<String> result = new ArrayList<>();
-        String car = ("A");
+        var car = ("A");
         result.add(car); /* '\u00C0' a alt-0192 */
         result.add(car); /* '\u00C1' a alt-0193 */
         result.add(car); /* '\u00C2' a alt-0194 */
@@ -176,9 +176,9 @@ public class StringUtil extends StringUtils
      */
     public static java.lang.String removeAccent(java.lang.String chaine)
     {
-        java.lang.StringBuilder result = new StringBuilder(chaine);
+        var result = new StringBuilder(chaine);
         final int length = result.length();
-        for (int bcl = 0; bcl < length; bcl++)
+        for (var bcl = 0; bcl < length; bcl++)
         {
             int carVal = chaine.charAt(bcl);
             if ((carVal >= MIN) && (carVal <= MAX))
@@ -283,7 +283,7 @@ public class StringUtil extends StringUtils
     public static Boolean convertToBoolean(String string) // $codepro.audit.disable cyclomaticComplexity
     {
         Boolean bVal = null;
-        final String str = string.toUpperCase(Locale.FRANCE);
+        final var str = string.toUpperCase(Locale.FRANCE);
         if ("VRAI".equalsIgnoreCase(str) || "TRUE".equalsIgnoreCase(str) || 
                 "1".equalsIgnoreCase(str) || "OUI".equalsIgnoreCase(str) || 
                 "YES".equalsIgnoreCase(str) || "Y".equalsIgnoreCase(str) || 
@@ -350,9 +350,9 @@ public class StringUtil extends StringUtils
      */
     public static String[] parseStringToArray(String parc, String separateur)
     {
-        final StringTokenizer token = new StringTokenizer(parc, separateur);
-        final String[] array = new String[token.countTokens()];
-        int i =0;
+        final var token = new StringTokenizer(parc, separateur);
+        final var array = new String[token.countTokens()];
+        var i =0;
         while (token.hasMoreTokens())
         {
             array[i]=token.nextToken();
@@ -374,16 +374,16 @@ public class StringUtil extends StringUtils
      */
     public static int countCharacterOccurrence(String chaine, String caractere)
     {
-    	int compteur = 0;
+        var compteur = 0;
     	
     	if ((null != caractere) && (null != chaine))
 		{
     		if (1 == caractere.length())
     		{ 
     	        final int length = chaine.length();
-    	        for (int i=0; i < length;i++)
+    	        for (var i=0; i < length;i++)
 	        	{
-	        		String test = String.valueOf(chaine.charAt(i));
+    	            var test = String.valueOf(chaine.charAt(i));
 	        		if (test.equalsIgnoreCase(caractere))
 	        		{
 	        			compteur++;
@@ -393,7 +393,7 @@ public class StringUtil extends StringUtils
 	    	else if (caractere.length() > 1)
 	    	{
 	    		compteur = 0;
-	    		int position = 0;
+	    		var position = 0;
 	    		final int fin = chaine.length();
 	    		String temp = chaine;
 	    		while (position != fin)
@@ -424,10 +424,10 @@ public class StringUtil extends StringUtils
     public static String join(Object[] target, String separator) 
     {
 
-        final StringBuilder sb = new StringBuilder();
+        final var sb = new StringBuilder();
         if (target.length > 0) {
             sb.append(target[0]);
-            for (int i = 1; i < target.length; i++) {
+            for (var i = 1; i < target.length; i++) {
                 sb.append(separator);
                 sb.append(target[i]);
             }
@@ -439,7 +439,7 @@ public class StringUtil extends StringUtils
     
     public static String join(Iterable<?> target, String separator) 
     {
-        StringBuilder sb = new StringBuilder();
+        var sb = new StringBuilder();
         Iterator<?> it = target.iterator();
         if (it.hasNext()) {
             sb.append(it.next());
@@ -453,8 +453,8 @@ public class StringUtil extends StringUtils
     
     public static String bytesToHexString(byte[] encryptedPasswd)
     {
-        StringBuilder retString = new StringBuilder();
-        for (int i = 0; i < encryptedPasswd.length; ++i)
+        var retString = new StringBuilder();
+        for (var i = 0; i < encryptedPasswd.length; ++i)
         {
             retString.append(Integer.toHexString(0x0100 + (encryptedPasswd[i] & 0x00FF)).substring(1));
         }
@@ -466,8 +466,8 @@ public class StringUtil extends StringUtils
     public static byte[] hexStringToBytes(String hexString)
     { 
         int len = hexString.length();
-        byte[] data = new byte[len / 2];
-        for (int i = 0; i < len; i += 2)
+        var data = new byte[len / 2];
+        for (var i = 0; i < len; i += 2)
         {
             data[i / 2] = (byte) ((Character.digit(hexString.charAt(i), 16) << 4) + Character.digit(hexString.charAt(i + 1), 16));
         }
