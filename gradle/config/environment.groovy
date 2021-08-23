@@ -3,7 +3,7 @@ desc_project{
     version{
         majorVersion=11
         mediumVersion=1
-        minorVersion=1
+        minorVersion=2
     }
     artefact{
         group="fr.lixbox.lixbox-common"
