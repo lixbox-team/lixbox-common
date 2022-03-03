@@ -39,12 +39,8 @@ import fr.lixbox.common.util.StringUtil;
 public class StringTokenizer
 {
     // ----------- Attributs -----------
-    private int currentPosition;
-    private int newPosition;
-    private final int maxPosition;
-    private final String str;
-    private final String delimiters;
-    private final int lastDelimiters;
+    private String str;
+    private String delimiters;
     
     private List<String> tokens;
     
@@ -53,60 +49,37 @@ public class StringTokenizer
     // ----------- CONSTRUCTEURS -----------
     public StringTokenizer(String str, String delim)
     {
-        newPosition = -1;
-
-    	this.str = str;
-    	this.maxPosition = str.length();
-    	this.delimiters = delim;
-        currentPosition = 0 - delimiters.length();
-        this.lastDelimiters = (!StringUtil.isEmpty(str) && str.contains(delimiters))?str.lastIndexOf(delimiters):maxPosition;
-		
-        extraireTokens(true);
-    }
-    
-    
-    
-    public StringTokenizer(String str, String delim, boolean controle)
-    {
-    	if (!StringUtil.isEmpty(str))
-    	{
-    		newPosition = -1;
-
-        	this.str = str;
-        	this.maxPosition = str.length();
-        	this.delimiters = delim;
-            currentPosition = 0 - delimiters.length();
-            var valide = true;
-        	if (controle)
+        this.tokens=new ArrayList<>();
+        if(StringUtil.isNotEmpty(str))
+        {
+            if (str.contains(delim))
+            {    
+            	this.str = str;
+                this.delimiters = delim;    		
+                extraireTokens();
+            }
+            else
             {
-     			valide = str.contains(delimiters);
-     		}
-        	this.lastDelimiters = (!StringUtil.isEmpty(str) && valide)?str.lastIndexOf(delimiters):0;
-            extraireTokens(controle);
-		}
-    	else
-    	{
-    		this.str = null;
-        	this.maxPosition = -1;
-        	this.lastDelimiters = -1;
-        	this.delimiters = null;
-        	this.tokens = new ArrayList<>();
-    	}
+                this.tokens.add(str);
+            }
+        }
     }
-
+    
     
 
     // ----------- Methodes -----------
-    private void extraireTokens(boolean controle)
+    private void extraireTokens()
     {        
-        tokens = new ArrayList<>();
+        int currentPosition = -1;
+        int maxPosition;
+        int lastDelimiters;
         int sizeDelimiters = delimiters.length();
-        var valide = true;
-        if (controle)
-        {
-			valide = str.contains(delimiters);
-		}
-        if (!StringUtil.isEmpty(str) && valide)
+        int newPosition;
+
+        maxPosition = str.length();
+        currentPosition = 0 - delimiters.length();
+        lastDelimiters = (!StringUtil.isEmpty(str) && str.contains(delimiters))?str.lastIndexOf(delimiters):maxPosition;
+        if (!StringUtil.isEmpty(str))
         {
             while ((currentPosition <= maxPosition) && (currentPosition <= lastDelimiters))
             {
@@ -136,6 +109,6 @@ public class StringTokenizer
     
     public List<String> getTokens()
     {
-     return tokens;   
+        return tokens;   
     }
 }

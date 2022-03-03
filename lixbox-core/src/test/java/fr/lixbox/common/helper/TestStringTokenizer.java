@@ -47,6 +47,7 @@ public class TestStringTokenizer extends TestCase
     public static final String sepaTest1 = ",";
     public static final String chaineTest2 = "1.1D;0004;NON_RENSEIGNE;NS;OUEST;NS;ROUL_CONT;cf tableau du reglement local;NS;ENL_IM;0;GARDE_RAP;NS;NS;NON;OUI";
     public static final String sepaTest2 = ";";
+    public static final String chaineTest3 = "1.1D 0004";
     
     
     
@@ -127,5 +128,38 @@ public class TestStringTokenizer extends TestCase
         final long duree = Calendar.getInstance().getTimeInMillis() - debut;
         LOG.info("duree:" + duree + " ms\n");  
         LOG.info("Fin testStringTokenizer_test2\n--------------------------------\n\n");
+    }
+    
+    
+    
+    @Test
+    public void testStringTokenizer_test3()
+    {
+        LOG.info("--------------------------------\nDebut testStringTokenizer_test3\n");
+        final long debut = Calendar.getInstance().getTimeInMillis();
+        
+        
+        //Preparation du test
+        StringTokenizer token = null;
+        
+                
+        //Execution du test    
+        try
+        { 
+            token = new StringTokenizer(chaineTest3,sepaTest2);
+        }
+        catch (Exception e)
+        {
+            assertNull("Exception levee non attendue", e);
+        }  
+        
+        
+        //Verification du test     
+        assertTrue("Token non realisee", (token!=null&&token.size()==1));
+
+
+        final long duree = Calendar.getInstance().getTimeInMillis() - debut;
+        LOG.info("duree:" + duree + " ms\n");  
+        LOG.info("Fin testStringTokenizer_test3\n--------------------------------\n\n");
     }
 }
