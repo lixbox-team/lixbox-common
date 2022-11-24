@@ -2,7 +2,7 @@ project(':lixbox-stream'){
 	dependencies {	     
 		api project(':lixbox-core')
 
-        api 'org.apache.tika:tika-core:1.27'
+        api 'org.apache.tika:tika-core:2.6.0'
         api (group: 'org.apache.commons', name: 'commons-jexl3', version: '3.2.1') 
         
         

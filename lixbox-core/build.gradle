@@ -6,14 +6,15 @@ project(':lixbox-core'){
         api group: 'jakarta.persistence', name: 'jakarta.persistence-api', version: '2.2.3'
         
 //        //jackson
-        api 'com.fasterxml.jackson.core:jackson-core:2.12.4'
-        api 'com.fasterxml.jackson.core:jackson-databind:2.12.4'
+        api 'com.fasterxml.jackson.core:jackson-core:2.14.1'
+        api 'com.fasterxml.jackson.core:jackson-databind:2.14.1'
 //      
         //apache
+        api group: 'org.apache.commons', name: 'commons-text', version: '1.10.0'
         api 'commons-beanutils:commons-beanutils:1.9.4'
         api 'commons-codec:commons-codec:1.15'
         api 'org.apache.commons:commons-collections4:4.4'
-        api 'commons-io:commons-io:2.10.0'
+        api 'commons-io:commons-io:2.11.0'
         api 'org.apache.commons:commons-lang3:3.12.0'
         
         
