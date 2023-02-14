@@ -280,9 +280,9 @@ public class StringUtil extends StringUtils
      *         Boolean.FALSE si la chaine est FAUX || FALSE || 0 || NON || NO || N || DISABLED
      *         sinon null
      */
-    public static Boolean convertToBoolean(String string) // $codepro.audit.disable cyclomaticComplexity
+    public static boolean convertToBoolean(String string)
     {
-        Boolean bVal = null;
+        Boolean bVal = Boolean.FALSE;
         final var str = string.toUpperCase(Locale.FRANCE);
         if ("VRAI".equalsIgnoreCase(str) || "TRUE".equalsIgnoreCase(str) || 
                 "1".equalsIgnoreCase(str) || "OUI".equalsIgnoreCase(str) || 
@@ -291,14 +291,6 @@ public class StringUtil extends StringUtils
         {
             bVal = Boolean.TRUE;
         }
-        else 
-            if ("FAUX".equalsIgnoreCase(str) || "FALSE".equalsIgnoreCase(str) || 
-                    "O".equalsIgnoreCase(str) || "NON".equalsIgnoreCase(str) || 
-                    "NO".equalsIgnoreCase(str) || "N".equalsIgnoreCase(str) || 
-                    "DISABLED".equalsIgnoreCase(str))
-            {
-                bVal = Boolean.FALSE;
-            }
         return bVal;
     }
         
