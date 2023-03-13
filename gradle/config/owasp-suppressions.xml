@@ -4,5 +4,9 @@
   <suppress>
    <notes><![CDATA[CVE-2021-37533 - commons-net]]></notes>
    <cve>CVE-2021-37533</cve>
-</suppress>
+  </suppress>
+  <suppress>
+   <notes><![CDATA[CVE-2022-45688]]></notes>
+   <cve>CVE-2022-45688</cve>
+  </suppress>
 </suppressions>

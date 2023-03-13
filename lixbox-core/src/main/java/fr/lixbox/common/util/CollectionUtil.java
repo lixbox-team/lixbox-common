@@ -197,7 +197,7 @@ public class CollectionUtil
         if ((null != list) && (null != destination))
         {
             final int length = list.size();
-            for (var i = 0; i < length; i++)
+            for (int i = 0; i < length; i++)
             {
                 if (destination.isInterface() && (destination.isAssignableFrom(list.get(i).getClass())))
                 {
@@ -282,8 +282,8 @@ public class CollectionUtil
                 }
                 if (propriete!=null)
                 {
-                    final var listKey = CollectionUtil.convertAnyListToArrayList(listTmp.keySet());
-                    Collections.sort(listKey);                
+                    final List<String> listKey = CollectionUtil.convertAnyListToArrayList(listTmp.keySet());
+                    Collections.sort(listKey);
                     for (Object key : listKey)
                     {
                         tmpList.add(listTmp.get(key));
@@ -291,7 +291,7 @@ public class CollectionUtil
                 }
                 else
                 {
-                    Collections.sort((List<String>)tmpList);           
+                    Collections.sort((List<String>)tmpList);
                 }
                 listeATrier.clear();
                 listeATrier.addAll(tmpList);
@@ -370,7 +370,7 @@ public class CollectionUtil
      */
     public static boolean contientAuMoinsUn(List<?> colA, List<?> colB)
     {
-        var retour = false;
+        boolean retour = false;
     	if (isEmpty(colA))
         {
             throw new ProcessusException(LixboxResources.getString("ERROR.PARAM.INCORRECT.02", "colA")); //$NON-NLS-1$ //$NON-NLS-2$
@@ -533,7 +533,7 @@ public class CollectionUtil
      */
     public static boolean containsObjectWithProperty(List<?> liste, String propertyName, Object value)
     {
-        var result = false;
+        boolean result = false;
         try
         {            
             if (!isEmpty(liste))
@@ -575,7 +575,7 @@ public class CollectionUtil
         {            
             if (!isEmpty(liste))
             {
-                for (var i=0; i<liste.size(); i++)
+                for (int i=0; i<liste.size(); i++)
                 {
                     if (value.equals(PropertyUtils.getProperty(liste.get(i), propertyName)))
                     {
@@ -606,7 +606,7 @@ public class CollectionUtil
      */
     public static boolean existeDansLaCollection(List<?> colA, Object o)
     {
-        var retour = false;
+        boolean retour = false;
     	if (isEmpty(colA))
         {
             return false;
@@ -640,7 +640,7 @@ public class CollectionUtil
      */
     public static boolean existeDansLeTableau(Object[]  colA, Object o)
     {
-        var retour = false;
+        boolean retour = false;
     	if (null == colA)
         {
             throw new ProcessusException(LixboxResources.getString("ERROR.PARAM.INCORRECT.02", "colA")); //$NON-NLS-1$ //$NON-NLS-2$
@@ -686,7 +686,7 @@ public class CollectionUtil
         while (it.hasNext())
         {
             Object obj = it.next();
-            var i = 0;
+            int i = 0;
             for (int m = Math.min(getFreq(obj, mapa), getFreq(obj, mapb)); i < m; ++i)
             {
                 list.add(obj);

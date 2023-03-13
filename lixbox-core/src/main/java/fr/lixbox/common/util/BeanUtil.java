@@ -33,7 +33,9 @@ import org.apache.commons.beanutils.BeanUtilsBean;
 import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.commons.beanutils.Converter;
 import org.apache.commons.beanutils.DynaBean;
+import org.apache.commons.beanutils.DynaClass;
 import org.apache.commons.beanutils.DynaProperty;
+import org.apache.commons.beanutils.expression.Resolver;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -164,7 +166,7 @@ public class BeanUtil extends BeanUtilsBean
                
         
         // copie les valeurs d'une map        
-        for (var i=0; i < names.length; i++)            
+        for (int i=0; i < names.length; i++)            
         {
             name = names[i];
             if (getInstance().getPropertyUtils().isWriteable(dest, name))
@@ -209,7 +211,7 @@ public class BeanUtil extends BeanUtilsBean
         {
             throw new ProcessusException(LixboxResources.getString("ERROR.PARAM.INCORRECT.02", "origDescriptors"));
         }
-        for (var i = 0; i < origDescriptors.length; i++)
+        for (int i = 0; i < origDescriptors.length; i++)
         {
             name = origDescriptors[i].getName();
             if ("class".equals(name)) // $codepro.audit.disable stringMethodUsage
@@ -273,7 +275,7 @@ public class BeanUtil extends BeanUtilsBean
     {
         // Resolve any nested expression to get the actual target bean
         Object target = bean;
-        var resolver = getPropertyUtils().getResolver();
+        Resolver resolver = getPropertyUtils().getResolver();
         while (resolver.hasNested(name))
         {
             try
@@ -296,8 +298,8 @@ public class BeanUtil extends BeanUtilsBean
         // Calculate the target property type
         if (target instanceof DynaBean)
         {
-            var dynaClass = ((DynaBean) target).getDynaClass();
-            var dynaProperty = dynaClass.getDynaProperty(propName);
+            DynaClass dynaClass = ((DynaBean) target).getDynaClass();
+            DynaProperty dynaProperty = dynaClass.getDynaProperty(propName);
             if (dynaProperty == null)
             {
                 return; // Skip this property setter
@@ -395,7 +397,7 @@ public class BeanUtil extends BeanUtilsBean
         {
             throw new ProcessusException(LixboxResources.getString("ERROR.PARAM.INCORRECT.02", "origDescriptors"));
         }
-        for (var i = 0; i < origDescriptors.length; i++)
+        for (int i = 0; i < origDescriptors.length; i++)
         {
             name = origDescriptors[i].getName();
             if (getInstance().getPropertyUtils().isWriteable(dest, name))
@@ -430,7 +432,7 @@ public class BeanUtil extends BeanUtilsBean
 	 */
     public static boolean estCastable(Object object, Class<?> classe)
     {
-        var result = false;
+        boolean result = false;
         try
         {
             if (classe != null)

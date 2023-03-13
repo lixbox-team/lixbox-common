@@ -88,7 +88,7 @@ public class StringTokenizer
                 {
                     newPosition = maxPosition;
                 }
-                var substring = StringUtils.mid(str, currentPosition + sizeDelimiters, newPosition - currentPosition - sizeDelimiters);                 // $codepro.audit.disable variableDeclaredInLoop
+                String substring = StringUtils.mid(str, currentPosition + sizeDelimiters, newPosition - currentPosition - sizeDelimiters);                 // $codepro.audit.disable variableDeclaredInLoop
                 if (!("\n".equalsIgnoreCase(delimiters) && StringUtil.isEmpty(substring)))
                 {
                 	tokens.add(substring);

@@ -70,7 +70,7 @@ public class Evenement implements Serializable
         Evenement result = null;
         TypeReference<Evenement> typeRef = new TypeReference<Evenement>() {};
         if (StringUtil.isNotEmpty(json)) {
-            var mapper = new ObjectMapper();
+            ObjectMapper mapper = new ObjectMapper();
 
             try {
                 result = mapper.readValue(json, typeRef);
@@ -176,8 +176,8 @@ public class Evenement implements Serializable
     @Override
     public String toString()
     {
-        var result = "Content error";
-        var mapper = new ObjectMapper();
+        String result = "Content error";
+        ObjectMapper mapper = new ObjectMapper();
         try {
             result = mapper.writeValueAsString(this);
         } 

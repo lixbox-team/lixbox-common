@@ -51,12 +51,12 @@ public class CodeVersionUtil
     
     public static String getVersion(Class<?> clasz)
     {
-        var result = "unknow";
+        String result = "unknow";
         try(
             InputStream is = clasz.getResourceAsStream("/META-INF/MANIFEST.MF");
         )
         {
-            var prop = new Properties();
+            Properties prop = new Properties();
             prop.load(is);
             result = prop.getProperty("Implementation-Version");
         }

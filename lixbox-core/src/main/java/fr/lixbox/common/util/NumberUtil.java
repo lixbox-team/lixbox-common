@@ -80,7 +80,7 @@ public class NumberUtil extends NumberUtils
      */
     public static boolean between(double nbreaVerifier, double intervalleMin, double intervalleMax, boolean inclus)
     {
-        var result = false;
+        boolean result = false;
         if (inclus)
         {
             intervalleMin--;
@@ -122,10 +122,10 @@ public class NumberUtil extends NumberUtils
      */
     public static String keepNumbers(final String chaine)
     {
-        var firstZero = false;
-        final var result = new StringBuilder(32);
-        final var length = chaine.length();
-        for (var i=0; i < length;i++)
+        boolean firstZero = false;
+        final StringBuilder result = new StringBuilder(32);
+        final int length = chaine.length();
+        for (int i=0; i < length;i++)
         {
             if (StringUtils.isNumeric(String.valueOf(chaine.charAt(i))))
             {
@@ -152,8 +152,8 @@ public class NumberUtil extends NumberUtils
      */
     public static boolean isNumeric(String str)
     {   
-        var result = false;
-        var i=0;
+        boolean result = false;
+        int i=0;
         try
         {
             if (StringUtil.isNotEmpty(str))

@@ -23,8 +23,7 @@
  ******************************************************************************/
 package fr.lixbox.common.util;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -63,7 +62,7 @@ public class DateUtil extends DateUtils
         }
         if (null != date)
         {
-            final var dateFormat = FastDateFormat.getInstance(pattern);
+            final FastDateFormat dateFormat = FastDateFormat.getInstance(pattern);
             if (date instanceof Date)
             {
                 return dateFormat.format((Date) date);
@@ -123,7 +122,7 @@ public class DateUtil extends DateUtils
         {       
             if (!StringUtil.isEmpty(cal))
             {
-                final var date = DateUtils.parseDate(cal, parsePatterns);
+                final Date date = DateUtils.parseDate(cal, parsePatterns);
                 result= Calendar.getInstance();
                 result.setTime(date);
             }
@@ -183,7 +182,7 @@ public class DateUtil extends DateUtils
             {
             	Locale.setDefault(locale);
             	TimeZone.setDefault(timeZone);
-                final var date = DateUtils.parseDate(cal, pattern);
+                final Date date = DateUtils.parseDate(cal, pattern);
                 result = Calendar.getInstance();
                 result.setTime(date);
             }            
@@ -241,7 +240,7 @@ public class DateUtil extends DateUtils
      */
     public static Date addDelayToDate(Date dateOrig, long delay)
     {
-        final var cal=Calendar.getInstance();
+        final Calendar cal=Calendar.getInstance();
         final long d1 = dateOrig.getTime() + delay;
         cal.setTimeInMillis(d1);
         return cal.getTime();
@@ -299,55 +298,5 @@ public class DateUtil extends DateUtils
 	        default:
 	            return null;
         }
-    }
-    
-    
-
-    /**
-     * Parse sous forme de date une chaine de caractere d'apres le pattern fourni
-     * @param value
-     * @param pattern
-     * @return une date de type java.time.LocalDate
-     */
-    public static LocalDate parseLocalDate(String value, String pattern)
-    {
-    	LocalDate result = null;
-    	
-    	if (pattern != null && !pattern.isEmpty())
-    	{
-    	    var formatter = DateTimeFormatter.ofPattern(pattern);
-    		result = LocalDate.parse(value, formatter);
-    	}
-    	else
-    	{
-    		throw new ProcessusException(LixboxResources.getString("ERROR.PARAM.INCOMPATIBLE.01"));
-    	}
-    	
-    	return result;
-    }
-    
-    
-    
-    /**
-     * Formate une date d'apres le pattern fourni
-     * @param value
-     * @param pattern
-     * @return la date sous forme de chaine de caractere
-     */
-    public static String format(LocalDate date, String pattern)
-    {
-    	String result = null;
-    	
-    	if (pattern != null && !pattern.isEmpty())
-    	{
-    	    var formatter = DateTimeFormatter.ofPattern(pattern);
-    		result = date.format(formatter);
-    	}
-    	else
-    	{
-    		throw new ProcessusException(LixboxResources.getString("ERROR.PARAM.INCOMPATIBLE.01"));
-    	}
-    	
-    	return result;
     }
 }

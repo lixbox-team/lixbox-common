@@ -72,7 +72,7 @@ public class ExceptionUtil extends ExceptionUtils
         if (e instanceof ConstraintViolationException)
         {
             LOG.error(getRootCauseMessage(e));
-            var conteneurEvenement = new ConteneurEvenement();
+            ConteneurEvenement conteneurEvenement = new ConteneurEvenement();
             conteneurEvenement.addAll(((ConstraintViolationException)e).getConstraintViolations());
             result = new BusinessException(LixboxResources.getString("MSG.ERROR.EXCEPUTI_03", racineClasse),conteneurEvenement);
         }

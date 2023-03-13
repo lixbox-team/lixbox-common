@@ -195,7 +195,7 @@ public class EmailImpl
     
     public String getStrTo()
     {
-        var builder = new StringBuilder();
+        StringBuilder builder = new StringBuilder();
         for (InternetAddress adress:toList)
         {
             builder.append(new EmailAdresse(adress).getAdresseLitterale());
@@ -212,7 +212,7 @@ public class EmailImpl
     
     public String getStrCc()
     {
-        var builder = new StringBuilder();
+        StringBuilder builder = new StringBuilder();
         for (InternetAddress adress:ccList)
         {
             builder.append(new EmailAdresse(adress).getAdresseLitterale());
@@ -229,7 +229,7 @@ public class EmailImpl
     
     public String getStrBcc()
     {
-        var builder = new StringBuilder();
+        StringBuilder builder = new StringBuilder();
         for (InternetAddress adress:bccList)
         {
             builder.append(new EmailAdresse(adress).getAdresseLitterale());
@@ -260,7 +260,7 @@ public class EmailImpl
 
     public void setCharset(String newCharset)
     {
-        var set = Charset.forName(newCharset);
+        Charset set = Charset.forName(newCharset);
         this.charset = set.name();
     }
 
@@ -275,7 +275,7 @@ public class EmailImpl
 
     public Object getContent()
     {
-        var result = "";
+        String result = "";
         try
         {
             if (this.primaryBodyPart!=null)        
@@ -299,12 +299,12 @@ public class EmailImpl
         else
         {
             this.contentType = aContentType;
-            var strMarker = "; charset=";
+            String strMarker = "; charset=";
             int charsetPos = aContentType.toLowerCase().indexOf(strMarker);
             if (charsetPos != -1)
             {
                 charsetPos += strMarker.length();
-                var intCharsetEnd = aContentType.toLowerCase().indexOf(' ', charsetPos);
+                int intCharsetEnd = aContentType.toLowerCase().indexOf(' ', charsetPos);
                 if (intCharsetEnd != -1)
                 {
                     this.charset = aContentType.substring(charsetPos, intCharsetEnd);
@@ -320,7 +320,7 @@ public class EmailImpl
                 {
                     return;
                 }
-                var contentTypeBuf = new StringBuilder(this.contentType);
+                StringBuilder contentTypeBuf = new StringBuilder(this.contentType);
                 contentTypeBuf.append(strMarker);
                 contentTypeBuf.append(this.charset);
                 this.contentType = contentTypeBuf.toString();
@@ -360,7 +360,7 @@ public class EmailImpl
         this.session = aSession;
         if (aSession!=null)
         {
-            var sessionProperties = aSession.getProperties();
+            Properties sessionProperties = aSession.getProperties();
             String auth = sessionProperties.getProperty(MAIL_SMTP_AUTH);
             if ("true".equalsIgnoreCase(auth))
             {
@@ -399,7 +399,7 @@ public class EmailImpl
     {
         if (this.session == null)
         {
-            var properties = new Properties(System.getProperties());
+            Properties properties = new Properties(System.getProperties());
             properties.setProperty(MAIL_TRANSPORT_PROTOCOL, "smtp");
             if (StringUtil.isEmpty(this.hostName))
             {
@@ -437,7 +437,7 @@ public class EmailImpl
 
     public String getFrom()
     {
-        var result = "";
+        String result = "";
         if (this.fromAddress!=null)
         {
             result = this.fromAddress.toString();
@@ -749,7 +749,7 @@ public class EmailImpl
     {        
         try
         {
-            var transport = this.getMailSession().getTransport();
+            Transport transport = this.getMailSession().getTransport();
         	transport.connect();
         	
         	Transport.send(this.message);

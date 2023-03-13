@@ -63,7 +63,7 @@ public class Contexte implements Serializable
         Contexte result = null;
         TypeReference<Contexte> typeRef = new TypeReference<Contexte>() {};
         if (StringUtil.isNotEmpty(json)) {
-            var mapper = new ObjectMapper();
+            ObjectMapper mapper = new ObjectMapper();
 
             try {
                 result = mapper.readValue(json, typeRef);
@@ -93,7 +93,7 @@ public class Contexte implements Serializable
     
     public Contexte dupliquer()
     {
-        final var clone = new Contexte();
+        final Contexte clone = new Contexte();
         for (Entry<String, String> entry: contenu.entrySet())
         {
             clone.contenu.put(entry.getKey(), entry.getValue());
@@ -148,8 +148,8 @@ public class Contexte implements Serializable
     @Override
     public String toString()
     {
-        var result = "Content error";
-        var mapper = new ObjectMapper();
+        String result = "Content error";
+        ObjectMapper mapper = new ObjectMapper();
         try {
             result = mapper.writeValueAsString(this);
         } 

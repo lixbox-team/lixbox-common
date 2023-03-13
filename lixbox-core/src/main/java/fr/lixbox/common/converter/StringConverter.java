@@ -65,7 +65,7 @@ public class StringConverter extends BaseConverter
             value = value.replace("", "");
 
             // Avoid anything between script tags
-            var scriptPattern = Pattern.compile("<script>(.*?)</script>", Pattern.CASE_INSENSITIVE);
+            Pattern scriptPattern = Pattern.compile("<script>(.*?)</script>", Pattern.CASE_INSENSITIVE);
             value = scriptPattern.matcher(value).replaceAll("");
 
             // Avoid anything in a src='...' type of expression
