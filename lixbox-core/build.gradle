@@ -1,25 +1,31 @@
 project(':lixbox-core'){    
 	dependencies {     
         //jakarta
-        api group: 'jakarta.xml.bind', name: 'jakarta.xml.bind-api', version: '2.3.3'
-        api group: 'jakarta.validation', name: 'jakarta.validation-api', version: '2.0.2'
-        api group: 'jakarta.persistence', name: 'jakarta.persistence-api', version: '2.2.3'
+        api group: 'jakarta.xml.bind', name: 'jakarta.xml.bind-api', version: '4.0.2'
+        api group: 'jakarta.validation', name: 'jakarta.validation-api', version: '3.1.0'
+        api group: 'jakarta.persistence', name: 'jakarta.persistence-api', version: '3.1.0'
         
-//        //jackson
-        api 'com.fasterxml.jackson.core:jackson-core:2.14.1'
-        api 'com.fasterxml.jackson.core:jackson-databind:2.14.1'
-//      
+        
+        //jackson
+        api group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.18.1'
+        api group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.18.1'
+
+      
         //apache
-        api group: 'org.apache.commons', name: 'commons-text', version: '1.10.0'
-        api 'commons-beanutils:commons-beanutils:1.9.4'
-        api 'commons-codec:commons-codec:1.15'
-        api 'org.apache.commons:commons-collections4:4.4'
-        api 'commons-io:commons-io:2.11.0'
-        api 'org.apache.commons:commons-lang3:3.12.0'
+        api group: 'commons-beanutils', name: 'commons-beanutils', version: '1.9.4'
+        api group: 'commons-codec', name: 'commons-codec', version: '1.17.1'
+        api group: 'commons-io', name: 'commons-io', version: '2.18.0'
+        
+        api group: 'org.apache.commons', name: 'commons-collections4', version: '4.4'
+        api group: 'org.apache.commons', name: 'commons-lang3', version: '3.17.0'
+        api group: 'org.apache.commons', name: 'commons-text', version: '1.12.0'
+        
         
         
         // ================================ Test ================================
 		testImplementation group:'junit', name:'junit', version: junit_version
+		testImplementation group: 'org.hamcrest', name: 'hamcrest', version: '3.0'
+		
 	}
     
     jar{

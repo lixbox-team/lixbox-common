@@ -46,6 +46,7 @@ import fr.lixbox.common.resource.LixboxResources;
  * 
  * @author ludovic.terral
  */
+@SuppressWarnings("deprecation")
 public class ObjectUtil extends ObjectUtils
 {
     // ----------- Attribut -----------

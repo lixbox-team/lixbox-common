@@ -42,6 +42,7 @@ import fr.lixbox.common.exceptions.ProcessusException;
  * 
  * @author ludovic.terral
  */
+@SuppressWarnings("deprecation")
 public class StringUtil extends StringUtils
 {
     // ----------- Attribut -----------   

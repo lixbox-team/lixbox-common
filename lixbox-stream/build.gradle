@@ -2,12 +2,13 @@ project(':lixbox-stream'){
 	dependencies {	     
 		api project(':lixbox-core')
 
-        api 'org.apache.tika:tika-core:2.6.0'
-        api (group: 'org.apache.commons', name: 'commons-jexl3', version: '3.2.1') 
+        api 'org.apache.tika:tika-core:3.0.0'
+        api (group: 'org.apache.commons', name: 'commons-jexl3', version: '3.4.0') 
         
         
         // ================================ Test ================================
-		testImplementation 'junit:junit:4.13.1'
+        testImplementation group:'junit', name:'junit', version: junit_version
+        testImplementation group: 'org.hamcrest', name: 'hamcrest', version: '3.0'
 	}
     
     jar{

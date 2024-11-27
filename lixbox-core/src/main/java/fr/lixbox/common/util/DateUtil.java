@@ -42,6 +42,7 @@ import fr.lixbox.common.resource.LixboxResources;
  * 
  * @author ludovic.terral
  */
+@SuppressWarnings("deprecation")
 public class DateUtil extends DateUtils
 {
     // ----------- Methode -----------

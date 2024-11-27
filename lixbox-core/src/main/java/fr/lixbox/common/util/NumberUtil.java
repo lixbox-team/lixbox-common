@@ -37,6 +37,7 @@ import org.apache.commons.logging.LogFactory;
  * 
  * @author ludovic.terral
  */
+@SuppressWarnings("deprecation")
 public class NumberUtil extends NumberUtils
 {
     // ----------- Attribut -----------   

@@ -3,11 +3,13 @@ project(':lixbox-mail'){
         api project(':lixbox-core')
 
 		//jarkarta
-        api group: 'jakarta.mail', name: 'jakarta.mail-api', version: '1.6.7'
+        api group: 'jakarta.mail', name: 'jakarta.mail-api', version: '2.1.3'
+        api group: 'jakarta.activation', name: 'jakarta.activation-api', version: '2.1.3'
         
         
         // ================================ Test ================================
         testImplementation group:'junit', name:'junit', version: junit_version
+        testImplementation group: 'org.hamcrest', name: 'hamcrest', version: '3.0'
 	}
     
     jar{

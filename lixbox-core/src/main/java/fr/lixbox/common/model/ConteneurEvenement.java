@@ -32,8 +32,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
-import javax.validation.ConstraintViolation;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -46,6 +44,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.lixbox.common.model.enumeration.NiveauEvenement;
 import fr.lixbox.common.util.CollectionUtil;
 import fr.lixbox.common.util.StringUtil;
+import jakarta.validation.ConstraintViolation;
 
 /**
  * Cette classe est un conteneur d'erreurs liees aux evenements rencontres par

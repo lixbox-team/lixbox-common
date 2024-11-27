@@ -23,7 +23,7 @@
  ******************************************************************************/
 package fr.lixbox.common.mail.model;
 
-import javax.mail.Authenticator;
+import jakarta.mail.Authenticator;
 
 /**
  * Cette classe est une extension de la classe Authenticator
